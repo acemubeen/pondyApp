@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>187165842744-hrgmgnlv92vi9nq19r0pmcuocnbi7c33.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.187165842744-hrgmgnlv92vi9nq19r0pmcuocnbi7c33</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>187165842744-jnc2aan2pp4lkji8pkde0d96njcv5l8d.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDPsL-D2jExBrKYKwWbYrjvgHYac1K2ztM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>187165842744</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.pondyapp</string>
+	<key>PROJECT_ID</key>
+	<string>pondyapp-17bf4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pondyapp-17bf4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:187165842744:ios:35d34462a542b32611f5cd</string>
+	<key>DATABASE_URL</key>
+	<string>https://pondyapp-17bf4-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>

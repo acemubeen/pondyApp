@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "187165842744",
+    "firebase_url": "https://pondyapp-17bf4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pondyapp-17bf4",
+    "storage_bucket": "pondyapp-17bf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187165842744:android:5056c9d12c1d536f11f5cd",
+        "android_client_info": {
+          "package_name": "com.example.pondyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187165842744-jnc2aan2pp4lkji8pkde0d96njcv5l8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pondyapp",
+            "certificate_hash": "b6ba43cb5a257d87b30682ea56a6a74b2ada8089"
+          }
+        },
+        {
+          "client_id": "187165842744-d5knt0n2pndh1nbc8gm4946pu5ub1dvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB76XvYZLffTiJKkI6B_t6rQIRBb-8mTQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187165842744-d5knt0n2pndh1nbc8gm4946pu5ub1dvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
