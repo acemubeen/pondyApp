@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pondyapp/screens.dart/detailcard.dart';
 import 'package:pondyapp/screens.dart/explore.dart';
 
 import 'package:flutter/material.dart';
@@ -40,7 +41,8 @@ class _ProfileNbState extends State<ProfileNb> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                Test001(documentId: documentSnapshot.id),
+                                DetailCard(documentId: documentSnapshot.id),
+                            // (documentId: documentSnapshot.id),
                           ));
                     },
                     child: Center(
