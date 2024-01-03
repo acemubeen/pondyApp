@@ -7,18 +7,52 @@ import 'package:pondyapp/screens.dart/Category.dart';
 import 'package:pondyapp/account/signin_page.dart';
 import 'package:pondyapp/screens.dart/explore.dart';
 import 'package:pondyapp/screens.dart/profile.dart';
-import 'package:pondyapp/screens.dart/saved.dart';
-
+import 'package:pondyapp/screens.dart/saved_page.dart';
 import 'package:pondyapp/test/test.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
+import 'package:pondyapp/widgets/search_page.dart';
+
+// rest of the code
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _MyWidgetState();
 }
 
+TextEditingController searchController = TextEditingController();
+StreamController<List<DocumentSnapshot>> streamController = StreamController();
+
 class _MyWidgetState extends State<HomeScreen> {
+  final FocusNode searchFocusNode = FocusNode();
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   // ... other code ...
+
+  //   return GestureDetector(
+  //     onTap: () {
+  //       // Request focus for the TextField when the container is tapped
+  //       searchFocusNode.requestFocus();
+  //     },
+  //     child: Container(
+  //       // ... existing container properties ...
+  //       child: TextField(
+  //         focusNode: searchFocusNode, // Assign the FocusNode to the TextField
+  //         // ... existing TextField properties ...
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  @override
+  void dispose() {
+    searchFocusNode.dispose();
+    super.dispose();
+  }
+
   List imagelist = [
     {
       "id": 1,
@@ -52,8 +86,7 @@ class _MyWidgetState extends State<HomeScreen> {
     HomeScreen(),
     Explore(),
     Category(),
-    SavedNb(),
-    ProfileNb(),
+    SavedPage(),
   ];
 
   int currentIndex = 0;
@@ -210,32 +243,30 @@ class _MyWidgetState extends State<HomeScreen> {
                 ),
               ),
 
-              Container(
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 202, 232, 255),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                height: screenheight * 0.057,
-                margin: EdgeInsets.symmetric(
-                    horizontal: screenwidth * 0.070,
-                    vertical: screenheight * 0.040),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    hintText: "Search for the best",
-                    hintStyle: TextStyle(
-                      fontSize: screenheight * 0.0210,
-                      color: Color.fromARGB(255, 58, 137, 183),
-                    ),
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
-                    suffixIcon: Icon(
-                      Icons.search,
-                      size: screenheight * 0.040,
-                      //size: 24,
-                      color: Colors.grey,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SearchPage()),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 202, 232, 255),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  height: screenheight * 0.057,
+                  width: screenwidth * 0.890,
+                  margin: EdgeInsets.symmetric(
+                      horizontal: screenwidth * 0.070,
+                      vertical: screenheight * 0.040),
+                  child: Center(
+                    child: Text(
+                      "Search for the best",
+                      style: TextStyle(
+                        fontSize: screenheight * 0.0210,
+                        color: Color.fromARGB(255, 58, 137, 183),
+                      ),
                     ),
                   ),
                 ),
@@ -719,5 +750,14 @@ class _MyWidgetState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  void searchPlace(String searchTerm) {
+    streamController.addStream(FirebaseFirestore.instance
+        .collection('place')
+        .where('name', isGreaterThanOrEqualTo: searchTerm)
+        .where('name', isLessThan: searchTerm + '\uf8ff')
+        .snapshots()
+        .map((snapshot) => snapshot.docs));
   }
 }

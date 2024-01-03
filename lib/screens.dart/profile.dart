@@ -9,8 +9,13 @@ import 'package:pondyapp/constants.dart';
 import 'package:pondyapp/testfolder/test001.dart';
 
 class ProfileNb extends StatefulWidget {
-  const ProfileNb({super.key});
-
+/*  
+  PlaceCard({required this.documentId, Key? key}) : super(key: key);
+  final CollectionReference _place =
+      FirebaseFirestore.instance.collection('place');
+*/
+  final CollectionReference _place =
+      FirebaseFirestore.instance.collection('place');
   @override
   State<ProfileNb> createState() => _ProfileNbState();
 }
@@ -203,21 +208,6 @@ class _ProfileNbState extends State<ProfileNb> {
                       ),
                     ),
                   );
-                  // return Card(
-                  //   margin: const EdgeInsets.all(10),
-                  //   child: ListTile(
-                  //     title: Text(documentSnapshot['name']),
-                  //     subtitle: Text("${documentSnapshot['description']}"),
-                  //     onTap: () {
-                  //       Navigator.push(
-                  //           context,
-                  //           MaterialPageRoute(
-                  //             builder: (context) =>
-                  //                 Test001(documentId: documentSnapshot.id),
-                  //           ));
-                  //     },
-                  //   ),
-                  // );
                 },
               );
             }

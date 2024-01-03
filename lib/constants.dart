@@ -1,22 +1,9 @@
-const String cat1 = "Medical"; // c
-const String cat2 = "Grocery Stores"; //
-const String cat3 = "Restaurants & Food... establishments"; //
+const String cat1 = "Hospital/ Health"; // c
+const String cat2 = "Restaurant Hotel"; //
+const String cat3 = "Entertainment"; //
 const String cat4 = "Retail and shoping"; //
-const String cat5 = "Banking &  Financial.. Services"; //
-const String cat6 = "Transportation Services"; //
-const String cat7 = "Education"; //
-const String cat8 = "Entertainment & Leisure"; //
-const String cat9 = "Personal Care and Wellness"; //
-const String cat10 = "Public Services"; //
-const String cat11 = "Government Services"; //
-const String cat12 = "Pet Services"; //
-const String cat13 = "Utility Services"; //
-const String cat14 = "Communication & Technology"; //
-const String cat15 = "Waste Management"; //
-const String cat16 = "Religious Centers"; //
-const String cat17 = "Community Centers"; //
-const String cat18 = "Public Transportation"; //
-const String cat19 = "Childcare Services"; //
+const String cat5 = "Transport"; //
+const String cat6 = "Maintenance"; //
 
 const String cat_im1 = "assets/images/categories/m1.jpeg"; //
 const String cat_im2 = "assets/images/categories/m2.jpeg"; //

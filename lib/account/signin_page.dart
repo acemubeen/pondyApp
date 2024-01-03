@@ -1,8 +1,64 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pondyapp/account/register_page.dart';
+import 'package:pondyapp/main.dart';
 import 'package:pondyapp/screens.dart/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pondyapp/test/sign_in_method.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+Future<UserCredential> signUp(String email, String password) async {
+  UserCredential userCredential =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+  return userCredential;
+}
+
+Future<UserCredential> signIn(String email, String password) async {
+  UserCredential userCredential =
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+  return userCredential;
+}
+
+void handleSignUp(String email, String password) async {
+  try {
+    UserCredential userCredential = await signUp(email, password);
+    // Handle successful sign-up
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'weak-password') {
+      print('The password provided is too weak.');
+    } else if (e.code == 'email-already-in-use') {
+      print('The account already exists for that email.');
+    }
+  }
+}
+
+void handleSignIn(BuildContext context, String email, String password) async {
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+    // Handle successful sign in
+    User? user = userCredential.user;
+    if (user != null) {
+      print("User's email: ${user.email}");
+      // Now you can send this idToken to your server and verify it there
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                MyBottomNavigationBar()), // Navigate to HomeScreen page
+      );
+    }
+  } catch (e) {
+    print('Failed to sign in: ${e.toString()}');
+  }
+}
 
 class SigninPage extends StatefulWidget {
   @override
@@ -10,6 +66,8 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -100,11 +158,12 @@ class _SigninPageState extends State<SigninPage> {
                                             topRight: Radius.circular(7)),
                                       ),
                                       child: TextField(
+                                        controller: emailController,
                                         decoration: InputDecoration(
                                           filled: true,
                                           fillColor:
                                               Color.fromARGB(54, 255, 255, 255),
-                                          labelText: 'Email or Phone number',
+                                          labelText: 'Enter Your Email',
                                           labelStyle: TextStyle(
                                               color: Color.fromARGB(
                                                   191, 137, 137, 137),
@@ -124,6 +183,7 @@ class _SigninPageState extends State<SigninPage> {
                                             bottomRight: Radius.circular(7)),
                                       ),
                                       child: TextField(
+                                        controller: passwordController,
                                         decoration: InputDecoration(
                                           filled: true,
                                           fillColor:
@@ -164,20 +224,27 @@ class _SigninPageState extends State<SigninPage> {
                                   MediaQuery.of(context).size.width * 0.000,
                                   MediaQuery.of(context).size.height * 0.000,
                                 ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Color.fromARGB(255, 255, 127, 127),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(70))),
-                                  height: screenheight * 0.140,
-                                  width: screenwidth * 0.550,
-                                  child: Center(
-                                    child: Text(
-                                      "Sign In",
-                                      style: TextStyle(
-                                        color: const Color.fromARGB(
-                                            255, 255, 255, 255),
-                                        fontWeight: FontWeight.w500,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    handleSignIn(context, emailController.text,
+                                        passwordController.text);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(255, 255, 127, 127),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(70))),
+                                    height: screenheight * 0.140,
+                                    width: screenwidth * 0.550,
+                                    child: Center(
+                                      child: Text(
+                                        "Sign In",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -317,13 +384,24 @@ class _SigninPageState extends State<SigninPage> {
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      child: Text(
-                                        "Register now",
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                RegisterPage(),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        child: Text(
+                                          "Register now",
+                                          style: TextStyle(
+                                            color: Colors.blue,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ),
