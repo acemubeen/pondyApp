@@ -8,6 +8,7 @@ import 'package:pondyapp/screens.dart/profile.dart';
 import 'package:pondyapp/screens.dart/home_screen.dart';
 import 'package:pondyapp/screens.dart/saved_page.dart';
 import 'firebase_options.dart';
+import 'package:shimmer/shimmer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

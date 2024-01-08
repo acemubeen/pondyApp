@@ -234,7 +234,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           0.035,
                                     ),
                                     child: Text(
-                                      "Or Continue with",
+                                      "Or Continue with Google",
                                       style: TextStyle(
                                         color:
                                             Color.fromARGB(191, 137, 137, 137),
@@ -250,52 +250,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                       Container(
                                         height: screenheight * 0.130,
                                         width: screenwidth * 0.120,
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: Color.fromARGB(
-                                                255, 234, 066, 053),
-                                            borderRadius:
-                                                BorderRadius.circular(30)),
-                                        padding: EdgeInsets.fromLTRB(
-                                          MediaQuery.of(context).size.width *
-                                              0.015,
-                                          MediaQuery.of(context).size.height *
-                                              0.015,
-                                          MediaQuery.of(context).size.width *
-                                              0.015,
-                                          MediaQuery.of(context).size.height *
-                                              0.015,
-                                        ),
-                                        height: 50,
-                                        width: 50,
-                                        child: Image.asset(
-                                          "assets/images/icons/ic1.png",
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: Color.fromARGB(
-                                                255, 052, 168, 083),
-                                            borderRadius:
-                                                BorderRadius.circular(30)),
-                                        padding: EdgeInsets.fromLTRB(
-                                          MediaQuery.of(context).size.width *
-                                              0.015,
-                                          MediaQuery.of(context).size.height *
-                                              0.015,
-                                          MediaQuery.of(context).size.width *
-                                              0.015,
-                                          MediaQuery.of(context).size.height *
-                                              0.015,
-                                        ),
-                                        height: 50,
-                                        width: 50,
-                                        child: Image.asset(
-                                          "assets/images/icons/ic2.png",
-                                          color: Colors.white,
-                                        ),
                                       ),
                                       Container(
                                         height: screenheight * 0.130,

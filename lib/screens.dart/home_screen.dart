@@ -1,16 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:pondyapp/screens.dart/Category.dart';
-import 'package:pondyapp/account/signin_page.dart';
-import 'package:pondyapp/screens.dart/explore.dart';
-import 'package:pondyapp/screens.dart/profile.dart';
-import 'package:pondyapp/screens.dart/saved_page.dart';
-import 'package:pondyapp/test/test.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pondyapp/test/test.dart';
 import 'dart:async';
+import 'package:pondyapp/widgets/category_document_screen.dart';
+import '../constants.dart';
 
 import 'package:pondyapp/widgets/search_page.dart';
 
@@ -26,68 +22,50 @@ TextEditingController searchController = TextEditingController();
 StreamController<List<DocumentSnapshot>> streamController = StreamController();
 
 class _MyWidgetState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    futureImageList = fetchDocumentsFromFirestore();
+  }
+
+  // Replace with actual document IDs
+  Future<List<DocumentSnapshot>> getDocumentsByCategory(String category) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('place')
+        .where('type', isEqualTo: category)
+        .get();
+    return querySnapshot.docs;
+  }
+
+  final CarouselController carouselController = CarouselController();
+  final currentIndexNotifier = ValueNotifier<int>(0);
+
+  late Future<List<Map<String, dynamic>>> futureImageList;
+  List<String> documentIdsToShow = ['docId1', 'docId2', 'docId3'];
+
+  Future<List<Map<String, dynamic>>> fetchDocumentsFromFirestore() async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('second_place').get();
+
+    return querySnapshot.docs.map((doc) {
+      return {
+        "id": doc.id,
+        "image_path": doc[
+            'image'], // Replace with your actual field name for the image URL
+        "name": doc['name'], // Replace with your actual field name for the name
+        "type":
+            doc['type'], // Replace with your actual field name for the location
+      };
+    }).toList();
+  }
+
   final FocusNode searchFocusNode = FocusNode();
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   // ... other code ...
-
-  //   return GestureDetector(
-  //     onTap: () {
-  //       // Request focus for the TextField when the container is tapped
-  //       searchFocusNode.requestFocus();
-  //     },
-  //     child: Container(
-  //       // ... existing container properties ...
-  //       child: TextField(
-  //         focusNode: searchFocusNode, // Assign the FocusNode to the TextField
-  //         // ... existing TextField properties ...
-  //       ),
-  //     ),
-  //   );
-  // }
 
   @override
   void dispose() {
     searchFocusNode.dispose();
     super.dispose();
   }
-
-  List imagelist = [
-    {
-      "id": 1,
-      "image_path": 'images/004.png',
-      "name": "Namikaze Minato The yellow Flash ⚡",
-      "place": "Hidden Leaf Village",
-    },
-    {
-      "id": 2,
-      "image_path": 'images/003.jpg',
-      "name": "Gojo Saturo The Heart Stealer 💪🏻",
-      "place": "Japan"
-    },
-    {
-      "id": 3,
-      "image_path": 'images/002.jpg',
-      "name": "Marcus The Hacker 🧑🏻‍💻 ",
-      "place": "USA"
-    },
-    {
-      "id": 4,
-      "image_path": 'images/005.jpg',
-      "name": "Link click The Photo Traveller📷",
-      "place": "Japan"
-    },
-  ];
-
-  final CarouselController carouselController = CarouselController();
-
-  final List<Widget> _pages = [
-    HomeScreen(),
-    Explore(),
-    Category(),
-    SavedPage(),
-  ];
 
   int currentIndex = 0;
 
@@ -114,55 +92,79 @@ class _MyWidgetState extends State<HomeScreen> {
             elevation: 0,
             backgroundColor: Color.fromARGB(255, 58, 137, 183),
             title: Text(
-              "Shinzou wo Sasageyo",
+              "Welcome to Pondy",
               style: TextStyle(
+                color: Colors.white70,
                 fontSize: screenheight * 0.025,
               ),
             ),
             centerTitle: true,
             actions: <Widget>[
-              IconButton(
-                iconSize: screenheight * 0.026,
-                icon: Icon(isBellPressed
-                    ? Icons.notifications
-                    : Icons.notifications_active_sharp),
-                color: isBellPressed
-                    ? const Color.fromARGB(255, 255, 255, 255)
-                    : Color.fromARGB(255, 255, 113, 113),
-                onPressed: () {
-                  setState(() {
-                    isBellPressed = !isBellPressed;
-                  });
+              Builder(
+                builder: (context) => IconButton(
+                  iconSize: screenheight * 0.040,
+                  icon: Icon(
+                      isMenuPressed ? Icons.menu_open_outlined : Icons.menu,
+                      color: Colors.white),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        endDrawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Text('Drawer header'),
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey[300],
+                ),
+              ),
+              ListTile(
+                title: Text('Chipi Chipi'),
+                onTap: () {
+                  Navigator.pop(context);
                 },
               ),
-              IconButton(
-                iconSize: screenheight * 0.026,
-                icon:
-                    Icon(isMenuPressed ? Icons.menu_open_outlined : Icons.menu),
-                onPressed: () {
-                  setState(() {
-                    isMenuPressed = !isMenuPressed;
-                  });
+              ListTile(
+                title: Text("Chappa Chappa"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text("Dubi Dubi"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text("Daba Daba"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text("Magic poni"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text("Dubi Dubi"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text("Boom Boom Boom Boom"),
+                onTap: () {
+                  Navigator.pop(context);
                 },
               ),
             ],
-            leading: IconButton(
-              iconSize: screenheight * 0.026,
-              icon: isProfPressed
-                  ? CircleAvatar(
-                      radius: screenheight * 0.026,
-                      child: Icon(Icons.person),
-                    )
-                  : CircleAvatar(
-                      radius: screenheight * 0.026,
-                      child: Icon(Icons.person_outline_outlined),
-                    ),
-              onPressed: () {
-                setState(() {
-                  isProfPressed = !isProfPressed;
-                });
-              },
-            ),
           ),
         ),
         body: SingleChildScrollView(
@@ -191,7 +193,7 @@ class _MyWidgetState extends State<HomeScreen> {
                                 children: [
                                   Container(
                                     child: Text(
-                                      "Explorer",
+                                      "Explore",
                                       style: TextStyle(
                                           color: Color.fromARGB(
                                               255, 255, 255, 255),
@@ -215,7 +217,7 @@ class _MyWidgetState extends State<HomeScreen> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  height: 35,
+                                  height: screenheight * .052,
                                   width: 200,
                                   //color: const Color.fromARGB(40, 255, 214, 64),
                                   child: Row(
@@ -260,39 +262,30 @@ class _MyWidgetState extends State<HomeScreen> {
                   margin: EdgeInsets.symmetric(
                       horizontal: screenwidth * 0.070,
                       vertical: screenheight * 0.040),
-                  child: Center(
-                    child: Text(
-                      "Search for the best",
-                      style: TextStyle(
-                        fontSize: screenheight * 0.0210,
-                        color: Color.fromARGB(255, 58, 137, 183),
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: screenwidth * .05,
                       ),
-                    ),
+                      Text(
+                        "Search for the best",
+                        style: TextStyle(
+                          fontSize: screenheight * 0.0210,
+                          color: Color.fromARGB(255, 58, 137, 183),
+                        ),
+                      ),
+                      SizedBox(
+                        width: screenwidth * .34,
+                      ),
+                      Icon(
+                        Icons.search_rounded,
+                        color: Colors.black26,
+                        size: screenheight * .045,
+                      )
+                    ],
                   ),
                 ),
               ),
-
-              // Row(
-              //   children: [
-              //     Container(
-              //       padding: EdgeInsets.fromLTRB(
-              //         MediaQuery.of(context).size.width * .05,
-              //         MediaQuery.of(context).size.height * .0,
-              //         MediaQuery.of(context).size.width * .0,
-              //         MediaQuery.of(context).size.height * .02,
-              //       ),
-              //       width: screenwidth * 0.560,
-              //       //color: Color.fromARGB(82, 158, 158, 158),
-              //       child: Text(
-              //         "Categories",
-              //         style: TextStyle(
-              //             color: Color.fromARGB(255, 0, 0, 0),
-              //             fontWeight: FontWeight.w500,
-              //             fontSize: screenheight * 0.037),
-              //       ),
-              //     ),
-              //   ],
-              // ),
 
               /// Categoriesss ````````````````````
               Padding(
@@ -323,29 +316,32 @@ class _MyWidgetState extends State<HomeScreen> {
                   ],
                 ),
               ),
+
+//                 CATTTEEGGOORRYYYY     \\
+
               Container(
                 padding: EdgeInsets.fromLTRB(
-                  MediaQuery.of(context).size.width * 0.055,
-                  MediaQuery.of(context).size.height * 0.010,
+                  MediaQuery.of(context).size.width * 0.045,
+                  MediaQuery.of(context).size.height * 0.030,
                   MediaQuery.of(context).size.width * 0.000,
                   MediaQuery.of(context).size.height * 0.000,
                 ),
-                height: 200,
+                height: 170,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    CategoriesWD("Minato Namekaze", "004.png"),
-                    CategoriesWD("Gojo Saturo", "001.jpg"),
-                    CategoriesWD("Gojo Violet", "003.jpg"),
-                    CategoriesWD("Marcus", "002.jpg"),
-                    CategoriesWD("Link Click", "005.jpg"),
+                    CategoryLists(context, cat1, 'm1'),
+                    CategoryLists(context, cat2, 'm2'),
+                    CategoryLists(context, cat3, 'm3'),
+                    CategoryLists(context, cat4, 'm4'),
+                    CategoryLists(context, cat5, 'm5'),
                   ],
                 ),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(
                   MediaQuery.of(context).size.width * 0.060,
-                  MediaQuery.of(context).size.height * 0.020,
+                  MediaQuery.of(context).size.height * 0.000,
                   MediaQuery.of(context).size.width * 0.000,
                   MediaQuery.of(context).size.height * 0.000,
                 ),
@@ -388,24 +384,43 @@ class _MyWidgetState extends State<HomeScreen> {
                 width: MediaQuery.of(context).size.width * 0.870,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Color.fromARGB(110, 120, 120, 120),
+                    color: Color.fromARGB(255, 196, 196, 196),
                     width: 01,
                   ),
                   borderRadius: BorderRadius.circular(31),
-                  // color: Color.fromARGB(0, 126, 126, 126),
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: CarouselSlider(
-                    items: imagelist
-                        .map((item) => Stack(
-                              fit: StackFit.passthrough,
+                  child: FutureBuilder<List<Map<String, dynamic>>>(
+                    future: futureImageList,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else if (snapshot.hasData) {
+                        List<Map<String, dynamic>> imageList = snapshot.data!;
+                        return CarouselSlider(
+                          items: imageList.map((item) {
+                            return Stack(
+                              fit: StackFit.expand,
                               children: [
-                                Image.asset(
-                                  item['image_path'],
+                                CachedNetworkImage(
+                                  imageUrl: item['image_path'] ?? '',
                                   fit: BoxFit.cover,
-                                  width: double.maxFinite,
+                                  width: double.infinity,
+                                  placeholder: (context, url) => Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 ),
+                                // Image.network(
+                                //   item['image_path'] ?? '',
+                                //   fit: BoxFit.cover,
+                                //   width: double.infinity,
+                                //   filterQuality: FilterQuality.low,
+                                // ),
                                 Container(
                                   decoration: BoxDecoration(
                                       gradient: LinearGradient(
@@ -413,14 +428,15 @@ class _MyWidgetState extends State<HomeScreen> {
                                           end: Alignment.bottomCenter,
                                           colors: [
                                         Colors.transparent,
-                                        Colors.white.withOpacity(0),
+                                        Color.fromARGB(255, 255, 255, 255)
+                                            .withOpacity(0),
                                       ])),
                                 ),
                                 Positioned(
                                   bottom: 0,
                                   left: 0,
                                   right: 0,
-                                  top: screenheight * 0.190,
+                                  top: screenheight * 0.200,
                                   child: Container(
                                     width: screenwidth,
                                     height: screenheight * 0.10,
@@ -432,7 +448,7 @@ class _MyWidgetState extends State<HomeScreen> {
                                       MediaQuery.of(context).size.height *
                                           0.000,
                                     ),
-                                    color: Color.fromARGB(255, 196, 240, 255)
+                                    color: Color.fromARGB(255, 114, 114, 114)
                                         .withOpacity(0.750),
                                     child: Column(
                                       crossAxisAlignment:
@@ -441,23 +457,13 @@ class _MyWidgetState extends State<HomeScreen> {
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Text(
-                                            item['name'],
+                                            item['name'] ?? 'No name',
                                             style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255),
                                                 fontSize: screenheight * 0.020,
-                                                //fontSize: 15,
-                                                fontWeight: FontWeight.w500),
+                                                fontWeight: FontWeight.w700),
                                             maxLines: 2,
-                                          ),
-                                        ),
-                                        FittedBox(
-                                          fit: BoxFit.scaleDown,
-                                          child: Text(
-                                            item['place'],
-                                            style: TextStyle(
-                                                fontSize: screenheight * 0.018,
-                                                //fontSize: 13,
-                                                fontWeight: FontWeight.w500),
-                                            maxLines: 1,
                                           ),
                                         ),
                                       ],
@@ -465,20 +471,26 @@ class _MyWidgetState extends State<HomeScreen> {
                                   ),
                                 ),
                               ],
-                            ))
-                        .toList(),
-                    carouselController: carouselController,
-                    options: CarouselOptions(
-                      scrollPhysics: ClampingScrollPhysics(),
-                      autoPlay: false,
-                      aspectRatio: 1,
-                      viewportFraction: 1,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          currentIndex = index;
-                        });
-                      },
-                    ),
+                            );
+                          }).toList(),
+                          carouselController: carouselController,
+                          options: CarouselOptions(
+                            scrollPhysics: ClampingScrollPhysics(),
+                            autoPlayInterval: Duration(seconds: 6),
+                            autoPlay: true,
+                            aspectRatio: 1,
+                            viewportFraction: 1,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                currentIndex = index;
+                              });
+                            },
+                          ),
+                        );
+                      } else {
+                        return Center(child: Text('No data available'));
+                      }
+                    },
                   ),
                 ),
               ),
@@ -535,60 +547,6 @@ class _MyWidgetState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  @override
-  Widget CategoriesWD(String name, String filename) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
-    return Container(
-      padding: EdgeInsets.fromLTRB(
-        MediaQuery.of(context).size.width * 0.000,
-        MediaQuery.of(context).size.height * 0.000,
-        MediaQuery.of(context).size.width * 0.035,
-        MediaQuery.of(context).size.height * 0.000,
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            height: screenWidth * 0.309,
-            width: screenWidth * 0.309,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/$filename'),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(15.51),
-                shape: BoxShape.rectangle,
-              ),
-            ),
-          ),
-          SizedBox(
-            // height: 15,
-            height: screenWidth * 0.030,
-          ),
-          Container(
-            width: screenWidth * 0.300,
-            child: Center(
-              child: Text(
-                '$name',
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  // fontSize: 16,
-                  fontSize: screenHeight * 0.020,
-
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -687,7 +645,7 @@ class _MyWidgetState extends State<HomeScreen> {
                   ),
                   Container(
                     margin: EdgeInsets.fromLTRB(
-                      MediaQuery.sizeOf(context).width * 0.060,
+                      MediaQuery.sizeOf(context).width * 0.030,
                       MediaQuery.sizeOf(context).height * 0.000,
                       MediaQuery.sizeOf(context).width * 0.000,
                       MediaQuery.sizeOf(context).height * 0.000,
@@ -759,5 +717,82 @@ class _MyWidgetState extends State<HomeScreen> {
         .where('name', isLessThan: searchTerm + '\uf8ff')
         .snapshots()
         .map((snapshot) => snapshot.docs));
+  }
+
+  Widget CategoryLists(BuildContext context, String catname, String catimage) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context)
+        .size
+        .height; // Changed from screenwidth to screenheight
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryDocumentScreen(category: catname),
+          ),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.fromLTRB(
+          MediaQuery.of(context).size.width * 0.030,
+          MediaQuery.of(context).size.height * 0.000,
+          MediaQuery.of(context).size.width * 0.020,
+          MediaQuery.of(context).size.height * 0.000,
+        ),
+        width:
+            screenwidth * 0.270, // Set a fixed width for the category container
+        child: Column(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color.fromARGB(57, 95, 95, 95),
+                  width: 5.9,
+                ),
+                borderRadius: BorderRadius.circular(20),
+                image: DecorationImage(
+                  alignment: Alignment.center,
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/images/categories/$catimage.jpeg',
+                  ),
+                ),
+              ),
+              height: screenheight *
+                  0.130, // Set a fixed height for the image container
+              width: screenwidth *
+                  0.5, // Match the width of the category container
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.008),
+              child: Text(
+                '$catname',
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                  shadows: [
+                    Shadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.511),
+                      offset: Offset(0, 0),
+                      blurRadius: 30,
+                    )
+                  ],
+                  color: const Color.fromARGB(255, 0, 0, 0),
+                  fontSize: screenheight * .015,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              height: screenheight *
+                  0.02, // Set a fixed height for the text container
+              width: screenwidth *
+                  0.270, // Match the width of the category container
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

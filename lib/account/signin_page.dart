@@ -283,8 +283,8 @@ class _SigninPageState extends State<SigninPage> {
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color:
-                                              Color.fromARGB(255, 235, 82, 77),
+                                          color: Color.fromARGB(
+                                              255, 255, 221, 121),
                                           borderRadius:
                                               BorderRadius.circular(30)),
                                       padding: EdgeInsets.fromLTRB(
@@ -298,115 +298,52 @@ class _SigninPageState extends State<SigninPage> {
                                             0.015,
                                       ),
                                       height: 50,
-                                      width: 50,
+                                      width: screenwidth * .500,
                                       child: Image.asset(
                                         "assets/images/icons/ic1.png",
-                                        color: Colors.white,
+                                        color: const Color.fromARGB(
+                                            255, 235, 82, 77),
                                       ),
                                     ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      print("Phone tapped");
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Color.fromARGB(
-                                              255, 052, 168, 083),
-                                          borderRadius:
-                                              BorderRadius.circular(30)),
-                                      padding: EdgeInsets.fromLTRB(
-                                        MediaQuery.of(context).size.width *
-                                            0.015,
-                                        MediaQuery.of(context).size.height *
-                                            0.015,
-                                        MediaQuery.of(context).size.width *
-                                            0.015,
-                                        MediaQuery.of(context).size.height *
-                                            0.015,
-                                      ),
-                                      height: 50,
-                                      width: 50,
-                                      child: Image.asset(
-                                        "assets/images/icons/ic2.png",
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      print("Phone tapped");
-                                    },
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Color.fromARGB(
-                                                255, 130, 41, 41),
-                                            borderRadius:
-                                                BorderRadius.circular(30)),
-                                        padding: EdgeInsets.fromLTRB(
-                                          MediaQuery.of(context).size.width * 0,
-                                          MediaQuery.of(context).size.height *
-                                              0,
-                                          MediaQuery.of(context).size.width * 0,
-                                          MediaQuery.of(context).size.height *
-                                              0.000,
-                                        ),
-                                        height: 50,
-                                        width: 50,
-                                        child: IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(
-                                              Icons.person_off_outlined,
-                                              color: const Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                            ))),
                                   ),
                                 ],
                               ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(
-                                  MediaQuery.of(context).size.width * 0.000,
-                                  MediaQuery.of(context).size.height * 0.100,
-                                  MediaQuery.of(context).size.width * 0.000,
-                                  MediaQuery.of(context).size.height * 0.000,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
+                              SizedBox(height: screenheight * .13 ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    child: Text(
+                                      "Not a member? ",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(191, 137, 137, 137),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => RegisterPage(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
                                       child: Text(
-                                        "Not a member? ",
+                                        "Register now",
                                         style: TextStyle(
-                                          color: Color.fromARGB(
-                                              191, 137, 137, 137),
+                                          color: Colors.blue,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                RegisterPage(),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        child: Text(
-                                          "Register now",
-                                          style: TextStyle(
-                                            color: Colors.blue,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
