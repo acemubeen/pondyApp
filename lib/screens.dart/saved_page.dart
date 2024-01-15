@@ -29,10 +29,9 @@ class _SavedPageState extends State<SavedPage> {
     // If there are no saved items, display a message
     if (savedItems.isEmpty) {
       return Scaffold(
-        backgroundColor: Colors.grey[200],
         appBar: AppBar(
           title: Text('Saved Places'),
-          backgroundColor: Colors.grey,
+          backgroundColor: Color.fromARGB(255, 58, 137, 183),
         ),
         body: Center(
           child: Text("No Saved items"),
@@ -49,9 +48,9 @@ class _SavedPageState extends State<SavedPage> {
             color: Colors.grey[200],
           ),
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Color.fromARGB(255, 58, 137, 183),
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Color.fromARGB(255, 194, 216, 228),
       body: ListView.builder(
         itemCount: savedItems.length,
         itemBuilder: (context, index) {
@@ -117,8 +116,8 @@ class _SavedPageState extends State<SavedPage> {
                               child: Container(
                                   height: screenheight * 0.250,
                                   width: screenwidth * 0.650,
-                                  decoration: const BoxDecoration(
-                                      color: Color.fromARGB(234, 255, 255, 255),
+                                  decoration: BoxDecoration(
+                                      color: Colors.blueGrey[200],
                                       borderRadius: BorderRadius.only(
                                         bottomRight: Radius.circular(20),
                                         topRight: Radius.circular(20),
@@ -151,7 +150,7 @@ class _SavedPageState extends State<SavedPage> {
                                                         screenwidth * 0.040,
                                                     fontWeight: FontWeight.w500,
                                                     color: Color.fromARGB(
-                                                        211, 21, 21, 21)),
+                                                        255, 21, 21, 21)),
                                               )),
                                             )
                                           ],

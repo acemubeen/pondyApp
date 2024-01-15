@@ -1,7 +1,7 @@
-const String cat1 = "Hospital/ Health"; // c
+const String cat1 = "Hospital/ Health"; // c4
 const String cat2 = "Restaurant Hotel"; //
 const String cat3 = "Entertainment"; //
-const String cat4 = "Retail and shoping"; //
+const String cat4 = "Retail and Shopping"; //
 const String cat5 = "Transport"; //
 const String cat6 = "Maintenance"; //
 

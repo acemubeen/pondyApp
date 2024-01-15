@@ -1,21 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:pondyapp/screens.dart/detailcard.dart';
-import 'package:pondyapp/screens.dart/explore.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:pondyapp/authenticate/googlemaps.dart';
-import 'package:pondyapp/constants.dart';
-import 'package:pondyapp/testfolder/test001.dart';
 
 class ProfileNb extends StatefulWidget {
-/*  
-  PlaceCard({required this.documentId, Key? key}) : super(key: key);
-  final CollectionReference _place =
-      FirebaseFirestore.instance.collection('place');
-*/
-  final CollectionReference _place =
-      FirebaseFirestore.instance.collection('place');
+  ProfileNb({Key? key}) : super(key: key);
+
   @override
   State<ProfileNb> createState() => _ProfileNbState();
 }
@@ -29,9 +19,13 @@ class _ProfileNbState extends State<ProfileNb> {
     double screenheight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(26, 0, 0, 0),
+      appBar: AppBar(
+        title: Text('Explore Page'),
+        backgroundColor: Color.fromARGB(255, 58, 137, 183),
+      ),
+      backgroundColor: Color.fromARGB(255, 162, 181, 192),
       body: FutureBuilder(
-          future: Future.delayed(Duration(seconds: 2)),
+          future: Future.delayed(Duration(milliseconds: 40)),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
               return ListView.builder(
@@ -65,9 +59,9 @@ class _ProfileNbState extends State<ProfileNb> {
                             child: Container(
                               margin: EdgeInsets.fromLTRB(
                                 MediaQuery.of(context).size.width * 0.00,
-                                MediaQuery.of(context).size.height * 0.020,
+                                MediaQuery.of(context).size.height * 0.010,
                                 MediaQuery.of(context).size.width * 0.00,
-                                MediaQuery.of(context).size.height * 0.00,
+                                MediaQuery.of(context).size.height * 0.010,
                               ),
                               height: screenheight * 0.130,
                               width: screenwidth * 0.870,
@@ -81,7 +75,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                     height: screenheight * 0.130,
                                     width: screenwidth * 0.260,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 164, 179, 190),
                                       borderRadius: BorderRadius.only(
                                           bottomLeft: Radius.circular(20),
                                           topLeft: Radius.circular(20)),
@@ -97,7 +91,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                           width: screenwidth * 0.650,
                                           decoration: const BoxDecoration(
                                               color: Color.fromARGB(
-                                                  234, 255, 255, 255),
+                                                  255, 198, 215, 215),
                                               borderRadius: BorderRadius.only(
                                                 bottomRight:
                                                     Radius.circular(20),
@@ -174,11 +168,22 @@ class _ProfileNbState extends State<ProfileNb> {
                                                       color: Color.fromARGB(
                                                           255, 242, 155, 155),
                                                     ),
-                                                    SizedBox(
-                                                      width: screenwidth * .47,
+                                                    Flexible(
                                                       child: Text(
-                                                        documentSnapshot[
-                                                            'location'],
+                                                        (documentSnapshot.data() as Map<
+                                                                            String,
+                                                                            dynamic>?)
+                                                                        ?.containsKey(
+                                                                            'location') ==
+                                                                    true &&
+                                                                documentSnapshot[
+                                                                        'location'] !=
+                                                                    null
+                                                            ? documentSnapshot[
+                                                                'location']
+                                                            : 'No Location',
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         maxLines: 2,
                                                         style: TextStyle(
                                                             fontSize:
@@ -201,7 +206,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                                 margin: EdgeInsets.fromLTRB(
                                                   MediaQuery.sizeOf(context)
                                                           .width *
-                                                      0.075,
+                                                      0.05,
                                                   MediaQuery.sizeOf(context)
                                                           .height *
                                                       0.007,
@@ -218,36 +223,28 @@ class _ProfileNbState extends State<ProfileNb> {
                                                       "Type: ",
                                                       style: TextStyle(
                                                           fontSize:
-                                                              screenwidth *
-                                                                  0.030,
+                                                              screenheight *
+                                                                  0.015,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           color: Color.fromARGB(
                                                               145, 0, 0, 0)),
                                                     ),
-                                                    FittedBox(
-                                                      fit: BoxFit.fitWidth,
-                                                      child: Text(
-                                                        documentSnapshot[
-                                                            'type'],
-                                                        maxLines: 1,
-                                                        style: TextStyle(
-                                                            fontSize:
-                                                                screenwidth *
-                                                                    0.030,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    211,
-                                                                    21,
-                                                                    21,
-                                                                    21)),
-                                                      ),
+                                                    Text(
+                                                      documentSnapshot['type'],
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              screenheight *
+                                                                  0.013,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Color.fromARGB(
+                                                              211, 21, 21, 21)),
                                                     ),
                                                   ],
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           )))
                                 ],
@@ -281,8 +278,8 @@ class _ProfileNbState extends State<ProfileNb> {
         MediaQuery.of(context).size.height * 0.000,
       ),
       child: Shimmer.fromColors(
-        baseColor: Color.fromARGB(255, 211, 211, 211)!,
-        highlightColor: const Color.fromARGB(213, 245, 245, 245)!,
+        baseColor: Color.fromARGB(255, 211, 211, 211),
+        highlightColor: Color.fromARGB(213, 245, 245, 245),
         period: Duration(seconds: 2),
         child: Container(
           margin: EdgeInsets.symmetric(

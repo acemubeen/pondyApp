@@ -23,8 +23,9 @@ class Category extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Color.fromARGB(255, 194, 216, 228),
         appBar: AppBar(
-          backgroundColor: Colors.black26,
+          backgroundColor: Color.fromARGB(255, 58, 137, 183),
           title: Center(
             child: Text("Category"),
           ),
