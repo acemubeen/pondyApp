@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pondyapp/screens.dart/detailcard.dart';
+import 'package:pondyapp/screens.dart/trending_screen.dart';
 import 'package:pondyapp/test/test.dart';
 import 'dart:async';
 import 'package:pondyapp/widgets/category_document_screen.dart';
@@ -414,80 +415,87 @@ class _MyWidgetState extends State<HomeScreen> {
                             builder: (content, child) {
                               return CarouselSlider(
                                 items: imageList.map((item) {
-                                  return Stack(
-                                    fit: StackFit.expand,
-                                    children: [
-                                      CachedNetworkImage(
-                                        imageUrl: item['image_path'] ?? '',
-                                        fit: BoxFit.cover,
-                                        width: double.infinity,
-                                        placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator(),
-                                        ),
-                                        errorWidget: (context, url, error) =>
-                                            Icon(Icons.error),
-                                      ),
-                                      // Image.network(
-                                      //   item['image_path'] ?? '',
-                                      //   fit: BoxFit.cover,
-                                      //   width: double.infinity,
-                                      //   filterQuality: FilterQuality.low,
-                                      // ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter,
-                                                colors: [
-                                              Colors.transparent,
-                                              Color.fromARGB(255, 255, 255, 255)
-                                                  .withOpacity(0),
-                                            ])),
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        left: 0,
-                                        right: 0,
-                                        top: screenheight * 0.200,
-                                        child: Container(
-                                          width: screenwidth,
-                                          height: screenheight * 0.10,
-                                          padding: EdgeInsets.fromLTRB(
-                                            MediaQuery.of(context).size.width *
-                                                0.000,
-                                            MediaQuery.of(context).size.height *
-                                                0.015,
-                                            MediaQuery.of(context).size.width *
-                                                0.000,
-                                            MediaQuery.of(context).size.height *
-                                                0.000,
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) => TrendingScreen())
+                                        );
+                                    },
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        CachedNetworkImage(
+                                          imageUrl: item['image_path'] ?? '',
+                                          fit: BoxFit.cover,
+                                          width: double.infinity,
+                                          placeholder: (context, url) => Center(
+                                            child: CircularProgressIndicator(),
                                           ),
-                                          color:
-                                              Color.fromARGB(255, 114, 114, 114)
-                                                  .withOpacity(0.750),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              FittedBox(
-                                                fit: BoxFit.scaleDown,
-                                                child: Text(
-                                                  item['name'] ?? 'No name',
-                                                  style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 255, 255, 255),
-                                                      fontSize:
-                                                          screenheight * 0.020,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                  maxLines: 2,
+                                          errorWidget: (context, url, error) =>
+                                              Icon(Icons.error),
+                                        ),
+                                        // Image.network(
+                                        //   item['image_path'] ?? '',
+                                        //   fit: BoxFit.cover,
+                                        //   width: double.infinity,
+                                        //   filterQuality: FilterQuality.low,
+                                        // ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter,
+                                                  colors: [
+                                                Colors.transparent,
+                                                Color.fromARGB(255, 255, 255, 255)
+                                                    .withOpacity(0),
+                                              ])),
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          right: 0,
+                                          top: screenheight * 0.200,
+                                          child: Container(
+                                            width: screenwidth,
+                                            height: screenheight * 0.10,
+                                            padding: EdgeInsets.fromLTRB(
+                                              MediaQuery.of(context).size.width *
+                                                  0.000,
+                                              MediaQuery.of(context).size.height *
+                                                  0.015,
+                                              MediaQuery.of(context).size.width *
+                                                  0.000,
+                                              MediaQuery.of(context).size.height *
+                                                  0.000,
+                                            ),
+                                            color:
+                                                Color.fromARGB(255, 114, 114, 114)
+                                                    .withOpacity(0.750),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                FittedBox(
+                                                  fit: BoxFit.scaleDown,
+                                                  child: Text(
+                                                    item['name'] ?? 'No name',
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 255, 255, 255),
+                                                        fontSize:
+                                                            screenheight * 0.020,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                    maxLines: 2,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   );
                                 }).toList(),
                                 carouselController: carouselController,
@@ -495,12 +503,12 @@ class _MyWidgetState extends State<HomeScreen> {
                                   scrollPhysics: ClampingScrollPhysics(),
                                   aspectRatio: 1,
                                   viewportFraction: 1,
-                                  onPageChanged: (index, reason) {
-                                    if (currentIndex != index) {}
-                                    setState(() {
-                                      currentIndex = index;
-                                    });
-                                  },
+                                  // onPageChanged: (index, reason) {
+                                  //   if (currentIndex != index) {}
+                                  //   setState(() {
+                                  //     currentIndex = index;
+                                  //   });
+                                  // },
                                 ),
                               );
                             },

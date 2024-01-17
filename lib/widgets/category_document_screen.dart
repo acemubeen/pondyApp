@@ -20,7 +20,9 @@ class CategoryDocumentScreen extends StatelessWidget {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.grey[350],
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey[400],
         title: Text(category),
       ),
       body: FutureBuilder<List<DocumentSnapshot>>(
@@ -68,7 +70,7 @@ class CategoryDocumentScreen extends StatelessWidget {
                             height: screenheight * 0.130,
                             width: screenwidth * 0.260,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: const Color.fromARGB(255, 203, 203, 203),
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
                                   topLeft: Radius.circular(20)),
@@ -83,7 +85,7 @@ class CategoryDocumentScreen extends StatelessWidget {
                                   height: screenheight * 0.250,
                                   width: screenwidth * 0.650,
                                   decoration: const BoxDecoration(
-                                      color: Color.fromARGB(234, 255, 255, 255),
+                                      color: Color.fromRGBO(255, 253, 234, 0.918),
                                       borderRadius: BorderRadius.only(
                                         bottomRight: Radius.circular(20),
                                         topRight: Radius.circular(20),

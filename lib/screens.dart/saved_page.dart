@@ -117,7 +117,7 @@ class _SavedPageState extends State<SavedPage> {
                                   height: screenheight * 0.250,
                                   width: screenwidth * 0.650,
                                   decoration: BoxDecoration(
-                                      color: Colors.blueGrey[200],
+                                      color: Color.fromRGBO(255, 253, 234, 0.918),
                                       borderRadius: BorderRadius.only(
                                         bottomRight: Radius.circular(20),
                                         topRight: Radius.circular(20),

@@ -75,7 +75,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                     height: screenheight * 0.130,
                                     width: screenwidth * 0.260,
                                     decoration: BoxDecoration(
-                                      color: Color.fromARGB(255, 164, 179, 190),
+                                      color: Color.fromARGB(255, 193, 218, 236),
                                       borderRadius: BorderRadius.only(
                                           bottomLeft: Radius.circular(20),
                                           topLeft: Radius.circular(20)),
@@ -90,8 +90,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                           height: screenheight * 0.250,
                                           width: screenwidth * 0.650,
                                           decoration: const BoxDecoration(
-                                              color: Color.fromARGB(
-                                                  255, 198, 215, 215),
+                                              color: Color.fromRGBO(255, 251, 225, 0.924),
                                               borderRadius: BorderRadius.only(
                                                 bottomRight:
                                                     Radius.circular(20),
