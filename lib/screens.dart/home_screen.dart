@@ -92,12 +92,12 @@ class _MyWidgetState extends State<HomeScreen> {
 
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color.fromARGB(248, 255, 255, 255),
+        backgroundColor: Color(0xfff5f2e8),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(screenheight * 0.075),
           child: AppBar(
             elevation: 0,
-            backgroundColor: Color.fromARGB(255, 58, 137, 183),
+            backgroundColor: Color(0xff67c2bf),
             title: Text(
               "Welcome to Pondy",
               style: TextStyle(
@@ -182,7 +182,7 @@ class _MyWidgetState extends State<HomeScreen> {
                   clipper: MyClip(),
                   child: Container(
                     height: screenheight * 0.200,
-                    color: Color.fromARGB(255, 58, 137, 183),
+                    color: Color(0xff67c2bf),
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -203,8 +203,7 @@ class _MyWidgetState extends State<HomeScreen> {
                                       child: Text(
                                         "Explore",
                                         style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
+                                            color: Color(0xffffe28a),
                                             fontWeight: FontWeight.w700,
                                             fontSize: screenheight * 0.040),
                                       ),
@@ -262,7 +261,7 @@ class _MyWidgetState extends State<HomeScreen> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 202, 232, 255),
+                      color: Color.fromARGB(177, 255, 204, 190),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     height: screenheight * 0.057,
@@ -279,7 +278,7 @@ class _MyWidgetState extends State<HomeScreen> {
                           "Search for the best",
                           style: TextStyle(
                             fontSize: screenheight * 0.0210,
-                            color: Color.fromARGB(255, 58, 137, 183),
+                            color: Color.fromARGB(255, 182, 119, 103),
                           ),
                         ),
                         SizedBox(
@@ -287,7 +286,7 @@ class _MyWidgetState extends State<HomeScreen> {
                         ),
                         Icon(
                           Icons.search_rounded,
-                          color: Colors.blueGrey[400],
+                          color: Color.fromARGB(255, 182, 119, 103),
                           size: screenheight * .045,
                         ),
                       ],
@@ -307,13 +306,13 @@ class _MyWidgetState extends State<HomeScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: 40,
+                          height: screenheight * .050,
                           width: screenwidth,
                           //color: Color.fromARGB(131, 244, 225, 168),
                           child: Text(
                             "Category",
                             style: TextStyle(
-                                color: Color.fromARGB(255, 51, 25, 88),
+                                color: Color(0xffb54c62),
                                 fontWeight: FontWeight.w500,
                                 fontSize: screenheight * 0.035
                                 //fontSize: 32
@@ -334,7 +333,8 @@ class _MyWidgetState extends State<HomeScreen> {
                     MediaQuery.of(context).size.width * 0.000,
                     MediaQuery.of(context).size.height * 0.000,
                   ),
-                  height: 170,
+                  height: screenheight * .220,
+                  //height: 170,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -363,11 +363,11 @@ class _MyWidgetState extends State<HomeScreen> {
                           child: Text(
                             "Trending",
                             style: TextStyle(
-                                color: Color.fromARGB(255, 51, 25, 88),
-                                fontWeight: FontWeight.w500,
-                                fontSize: screenheight * 0.035
-                                //fontSize: 32
-                                ),
+                              color: Color(0xffb54c62),
+                              fontWeight: FontWeight.w500,
+                              fontSize: screenheight * 0.035,
+                              //fontSize: 32
+                            ),
                           ),
                         ),
                       ),
@@ -417,9 +417,11 @@ class _MyWidgetState extends State<HomeScreen> {
                                 items: imageList.map((item) {
                                   return GestureDetector(
                                     onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) => TrendingScreen())
-                                        );
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  TrendingScreen()));
                                     },
                                     child: Stack(
                                       fit: StackFit.expand,
@@ -447,8 +449,8 @@ class _MyWidgetState extends State<HomeScreen> {
                                                   end: Alignment.bottomCenter,
                                                   colors: [
                                                 Colors.transparent,
-                                                Color.fromARGB(255, 255, 255, 255)
-                                                    .withOpacity(0),
+                                                Color.fromARGB(
+                                                    26, 255, 255, 255),
                                               ])),
                                         ),
                                         Positioned(
@@ -460,18 +462,25 @@ class _MyWidgetState extends State<HomeScreen> {
                                             width: screenwidth,
                                             height: screenheight * 0.10,
                                             padding: EdgeInsets.fromLTRB(
-                                              MediaQuery.of(context).size.width *
+                                              MediaQuery.of(context)
+                                                      .size
+                                                      .width *
                                                   0.000,
-                                              MediaQuery.of(context).size.height *
+                                              MediaQuery.of(context)
+                                                      .size
+                                                      .height *
                                                   0.015,
-                                              MediaQuery.of(context).size.width *
+                                              MediaQuery.of(context)
+                                                      .size
+                                                      .width *
                                                   0.000,
-                                              MediaQuery.of(context).size.height *
+                                              MediaQuery.of(context)
+                                                      .size
+                                                      .height *
                                                   0.000,
                                             ),
-                                            color:
-                                                Color.fromARGB(255, 114, 114, 114)
-                                                    .withOpacity(0.750),
+                                            color: Color(0xff67c2bf)
+                                                .withOpacity(0.350),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
@@ -483,8 +492,8 @@ class _MyWidgetState extends State<HomeScreen> {
                                                     style: TextStyle(
                                                         color: Color.fromARGB(
                                                             255, 255, 255, 255),
-                                                        fontSize:
-                                                            screenheight * 0.020,
+                                                        fontSize: screenheight *
+                                                            0.020,
                                                         fontWeight:
                                                             FontWeight.w700),
                                                     maxLines: 2,
@@ -540,7 +549,8 @@ class _MyWidgetState extends State<HomeScreen> {
                             child: Text(
                               "Top places",
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  color: Color(0xffb54c62),
+                                  // top place text
                                   fontWeight: FontWeight.w500,
                                   fontSize: screenheight * 0.035),
                             ),
@@ -626,8 +636,17 @@ class _MyWidgetState extends State<HomeScreen> {
         height: screenheight * 0.125,
         width: screenwidth * 0.870,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: const Color.fromARGB(255, 0, 0, 0)
+                  .withOpacity(0.1), // Shadow color
+              offset: Offset(-1, 3), // Offset of the shadow
+              blurRadius: 20, // Amount of blur
+              spreadRadius: 1,
+            ),
+          ],
           borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(0, 67, 63, 63),
+          color: Color.fromARGB(86, 174, 204, 211),
         ),
 
         ////////////
@@ -637,15 +656,6 @@ class _MyWidgetState extends State<HomeScreen> {
                 height: screenheight * 0.150,
                 width: screenwidth * 0.250,
                 decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 0, 0, 0)
-                            .withOpacity(0.2), // Shadow color
-                        offset: Offset(-1, 3), // Offset of the shadow
-                        blurRadius: 5, // Amount of blur
-                        spreadRadius: 2,
-                      ),
-                    ],
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         topLeft: Radius.circular(10)),
@@ -658,20 +668,11 @@ class _MyWidgetState extends State<HomeScreen> {
                 height: screenheight * 0.250,
                 width: screenwidth * 0.650,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 111, 111, 111)
-                          .withOpacity(0.2), // Shadow color
-                      offset: Offset(2, 3), // Offset of the shadow
-                      blurRadius: 5, // Amount of blur
-                      spreadRadius: 2,
-                    ),
-                  ],
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
-                  color: Color.fromARGB(255, 255, 252, 245),
+                  color: Color.fromARGB(86, 174, 204, 211),
                 ),
                 child: Column(
                   children: [
@@ -696,7 +697,7 @@ class _MyWidgetState extends State<HomeScreen> {
                                 style: TextStyle(
                                     fontSize: screenwidth * 0.045,
                                     fontWeight: FontWeight.w500,
-                                    color: Color.fromARGB(211, 21, 21, 21)),
+                                    color: Color(0xff142850)),
                               ),
                             ),
                           ),
@@ -715,7 +716,7 @@ class _MyWidgetState extends State<HomeScreen> {
                           Icon(
                             size: screenheight * 0.030,
                             Icons.location_on_outlined,
-                            color: Color.fromARGB(173, 239, 89, 89),
+                            color: Color(0xff67c2bf),
                           ),
                           Expanded(
                             child: Text(
@@ -725,7 +726,7 @@ class _MyWidgetState extends State<HomeScreen> {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(194, 1, 41, 59)),
+                                  color: Color.fromARGB(195, 39, 73, 109)),
                             ),
                           ),
                         ],
@@ -748,7 +749,7 @@ class _MyWidgetState extends State<HomeScreen> {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(213, 105, 64, 5)),
+                                  color: Colors.grey[700]),
                             ),
                           ),
                           FittedBox(
@@ -759,7 +760,7 @@ class _MyWidgetState extends State<HomeScreen> {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(199, 4, 98, 115)),
+                                  color: Color(0xff2364aa)),
                             ),
                           ),
                         ],
@@ -838,15 +839,8 @@ class _MyWidgetState extends State<HomeScreen> {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
-                  shadows: [
-                    Shadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.511),
-                      offset: Offset(0, 0),
-                      blurRadius: 30,
-                    )
-                  ],
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontSize: screenheight * .015,
+                  color: const Color(0xff142850),
+                  fontSize: screenheight * .017,
                   fontWeight: FontWeight.w500,
                 ),
               ),

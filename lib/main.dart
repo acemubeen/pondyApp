@@ -12,7 +12,6 @@ import 'package:pondyapp/screens.dart/saved_page.dart';
 import 'firebase_options.dart';
 import 'package:shimmer/shimmer.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -22,7 +21,7 @@ void main() async {
   runApp(ChangeNotifierProvider<SavedItemsProvider>(
     create: (context) => SavedItemsProvider(),
     child: MaterialApp(
-      home:  MyApp(),
+      home: MyApp(),
       // Test(),
       // MyApp(),
     ),
@@ -36,8 +35,6 @@ class MyApp extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-     
-
         if (snapshot.connectionState == ConnectionState.active) {
           User? user = snapshot.data;
           if (user == null) {

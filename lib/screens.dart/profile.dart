@@ -21,9 +21,9 @@ class _ProfileNbState extends State<ProfileNb> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore Page'),
-        backgroundColor: Color.fromARGB(255, 58, 137, 183),
+        backgroundColor: Color(0xfff5f2e8),
       ),
-      backgroundColor: Color.fromARGB(255, 162, 181, 192),
+      backgroundColor: Color(0xfff5f2e8),
       body: FutureBuilder(
           future: Future.delayed(Duration(milliseconds: 40)),
           builder: (context, snapshot) {
@@ -66,6 +66,16 @@ class _ProfileNbState extends State<ProfileNb> {
                               height: screenheight * 0.130,
                               width: screenwidth * 0.870,
                               decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 111, 111, 111)
+                                        .withOpacity(0.1), // Shadow color
+                                    offset:
+                                        Offset(2, 3), // Offset of the shadow
+                                    blurRadius: 30, // Amount of blur
+                                    spreadRadius: 0,
+                                  ),
+                                ],
                                 borderRadius: BorderRadius.circular(20),
                                 //color: Color.fromARGB(147, 218, 86, 86),
                               ),
@@ -90,7 +100,8 @@ class _ProfileNbState extends State<ProfileNb> {
                                           height: screenheight * 0.250,
                                           width: screenwidth * 0.650,
                                           decoration: const BoxDecoration(
-                                              color: Color.fromRGBO(255, 251, 225, 0.924),
+                                              color: Color.fromRGBO(
+                                                  86, 175, 204, 0.155),
                                               borderRadius: BorderRadius.only(
                                                 bottomRight:
                                                     Radius.circular(20),
@@ -126,17 +137,14 @@ class _ProfileNbState extends State<ProfileNb> {
                                                             'name'],
                                                         maxLines: 1,
                                                         style: TextStyle(
-                                                            fontSize:
-                                                                screenwidth *
-                                                                    0.040,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    211,
-                                                                    21,
-                                                                    21,
-                                                                    21)),
+                                                          fontSize:
+                                                              screenwidth *
+                                                                  0.040,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color:
+                                                              Color(0xff142850),
+                                                        ),
                                                       )),
                                                     )
                                                   ],
@@ -164,8 +172,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                                           screenheight * 0.030,
                                                       Icons
                                                           .location_on_outlined,
-                                                      color: Color.fromARGB(
-                                                          255, 242, 155, 155),
+                                                      color: Color(0xff67c2bf),
                                                     ),
                                                     Flexible(
                                                       child: Text(
@@ -185,17 +192,14 @@ class _ProfileNbState extends State<ProfileNb> {
                                                             .ellipsis,
                                                         maxLines: 2,
                                                         style: TextStyle(
-                                                            fontSize:
-                                                                screenwidth *
-                                                                    0.029,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    211,
-                                                                    21,
-                                                                    21,
-                                                                    21)),
+                                                          fontSize:
+                                                              screenwidth *
+                                                                  0.029,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Color.fromARGB(
+                                                              195, 39, 73, 109),
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -238,8 +242,8 @@ class _ProfileNbState extends State<ProfileNb> {
                                                                   0.013,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          color: Color.fromARGB(
-                                                              211, 21, 21, 21)),
+                                                          color: Color(
+                                                              0xff2364aa)),
                                                     ),
                                                   ],
                                                 ),

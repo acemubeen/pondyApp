@@ -29,6 +29,7 @@ class _SavedPageState extends State<SavedPage> {
     // If there are no saved items, display a message
     if (savedItems.isEmpty) {
       return Scaffold(
+        backgroundColor: Color(0xfff5f2e8),
         appBar: AppBar(
           title: Text('Saved Places'),
           backgroundColor: Color.fromARGB(255, 58, 137, 183),
@@ -50,7 +51,7 @@ class _SavedPageState extends State<SavedPage> {
         ),
         backgroundColor: Color.fromARGB(255, 58, 137, 183),
       ),
-      backgroundColor: Color.fromARGB(255, 194, 216, 228),
+      backgroundColor: Color(0xfff5f2e8),
       body: ListView.builder(
         itemCount: savedItems.length,
         itemBuilder: (context, index) {
@@ -103,6 +104,15 @@ class _SavedPageState extends State<SavedPage> {
                             height: screenheight * 0.130,
                             width: screenwidth * 0.260,
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 111, 111, 111)
+                                      .withOpacity(0.2), // Shadow color
+                                  offset: Offset(2, 3), // Offset of the shadow
+                                  blurRadius: 30, // Amount of blur
+                                  spreadRadius: 6,
+                                ),
+                              ],
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
@@ -117,7 +127,7 @@ class _SavedPageState extends State<SavedPage> {
                                   height: screenheight * 0.250,
                                   width: screenwidth * 0.650,
                                   decoration: BoxDecoration(
-                                      color: Color.fromRGBO(255, 253, 234, 0.918),
+                                      color: Color.fromARGB(86, 174, 204, 211),
                                       borderRadius: BorderRadius.only(
                                         bottomRight: Radius.circular(20),
                                         topRight: Radius.circular(20),
@@ -146,11 +156,10 @@ class _SavedPageState extends State<SavedPage> {
                                                 snapshot.data!['name'],
                                                 maxLines: 1,
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        screenwidth * 0.040,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color.fromARGB(
-                                                        255, 21, 21, 21)),
+                                                  fontSize: screenwidth * 0.040,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xff142850),
+                                                ),
                                               )),
                                             )
                                           ],
@@ -172,8 +181,7 @@ class _SavedPageState extends State<SavedPage> {
                                             Icon(
                                               size: screenheight * 0.030,
                                               Icons.location_on_outlined,
-                                              color: Color.fromARGB(
-                                                  255, 242, 155, 155),
+                                              color: Color(0xff67c2bf),
                                             ),
                                             SizedBox(
                                               width: screenwidth * .47,
@@ -181,11 +189,11 @@ class _SavedPageState extends State<SavedPage> {
                                                 snapshot.data!['location'],
                                                 maxLines: 2,
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        screenwidth * 0.029,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color.fromARGB(
-                                                        211, 21, 21, 21)),
+                                                  fontSize: screenwidth * 0.029,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color.fromARGB(
+                                                      195, 39, 73, 109),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -218,11 +226,10 @@ class _SavedPageState extends State<SavedPage> {
                                                 snapshot.data!['type'],
                                                 maxLines: 1,
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        screenwidth * 0.030,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color.fromARGB(
-                                                        211, 21, 21, 21)),
+                                                  fontSize: screenwidth * 0.030,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xff2364aa),
+                                                ),
                                               ),
                                             ),
                                           ],

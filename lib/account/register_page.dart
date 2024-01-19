@@ -60,13 +60,13 @@ class _RegisterPageState extends State<RegisterPage> {
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color.fromARGB(255, 248, 094, 094),
+        backgroundColor: Color(0xff608334),
         body: Builder(
           builder: (BuildContext scaffoldContext) {
             return MaterialApp(
               home: Scaffold(
                 resizeToAvoidBottomInset: false,
-                backgroundColor: Color.fromARGB(255, 248, 094, 094),
+                backgroundColor: Color(0xff608334),
                 body: SingleChildScrollView(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
@@ -84,14 +84,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 MediaQuery.of(context).size.width * 0.000,
                                 MediaQuery.of(context).size.height * 0.000,
                               ),
-                              color: Color.fromARGB(255, 248, 094, 094),
+                              color: Color(0xff608334),
                               height: screenheight * 0.55,
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                     style: TextStyle(
-                                        color: Colors.white, // Text color
-                                        fontSize: 34,
+                                        color: Color(0xfff7feef), // Text color
+                                        fontSize: screenheight * .070,
+                                        // fontSize: 34,
                                         fontWeight: FontWeight.bold // Text size
                                         ),
                                     "Register"),
@@ -146,19 +147,18 @@ class _RegisterPageState extends State<RegisterPage> {
                                             controller: emailController,
                                             decoration: InputDecoration(
                                               filled: true,
-                                              fillColor: Color.fromARGB(
-                                                  54, 255, 255, 255),
+                                              fillColor: Color(0xfff7feef),
                                               labelText: 'Enter your Email',
                                               labelStyle: TextStyle(
                                                   color: Color.fromARGB(
-                                                      191, 137, 137, 137),
-                                                  fontSize: 15,
+                                                      204, 96, 131, 52),
+                                                  fontSize: screenheight * .037,
                                                   fontWeight: FontWeight.w500),
                                               border: InputBorder.none,
                                             ),
                                           ),
                                         ),
-                                        SizedBox(height: 1),
+                                        SizedBox(height: screenheight * .003),
                                         Container(
                                           decoration: BoxDecoration(
                                             color: Color.fromARGB(
@@ -172,13 +172,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                             controller: passwordController,
                                             decoration: InputDecoration(
                                               filled: true,
-                                              fillColor: Color.fromARGB(
-                                                  54, 255, 255, 255),
+                                              fillColor: Color(0xfff7feef),
                                               labelText: 'Password',
                                               labelStyle: TextStyle(
                                                   color: Color.fromARGB(
-                                                      191, 137, 137, 137),
-                                                  fontSize: 15,
+                                                      204, 96, 131, 52),
+                                                  fontSize: screenheight * .037,
                                                   fontWeight: FontWeight.w500),
                                               border: InputBorder.none,
                                             ),
@@ -205,8 +204,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            color: Color.fromARGB(
-                                                255, 255, 127, 127),
+                                            color: Color(0xff97b770),
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(70))),
                                         height: screenheight * 0.140,
@@ -215,8 +213,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           child: Text(
                                             "Sign up",
                                             style: TextStyle(
-                                              color: const Color.fromARGB(
-                                                  255, 255, 255, 255),
+                                              color: Color(0xfff7feef),
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
@@ -238,7 +235,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       style: TextStyle(
                                         color:
                                             Color.fromARGB(191, 137, 137, 137),
-                                        fontSize: 12,
+                                        fontSize: screenheight * .035,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),

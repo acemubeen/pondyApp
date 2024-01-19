@@ -23,7 +23,7 @@ class Category extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 194, 216, 228),
+        backgroundColor: Color(0xfff5f2e8),
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 58, 137, 183),
           title: Center(
@@ -120,7 +120,7 @@ class Category extends StatelessWidget {
                   decoration: BoxDecoration(
                     // color: Color.fromARGB(251, 0, 0, 0),
                     border: Border.all(
-                      color: Color.fromARGB(57, 255, 109, 109),
+                      color: Color.fromARGB(34, 133, 129, 104),
                       width: 5.9,
                     ),
                     borderRadius: BorderRadius.circular(20),
@@ -160,7 +160,7 @@ class Category extends StatelessWidget {
                               color: Color.fromRGBO(0, 0, 0, 0.511),
                               // color: Color.fromARGB(255, 159, 159, 159),
                               offset: Offset(0, 0),
-                              blurRadius: 30,
+                              blurRadius: 70,
                             )
                           ],
                           color: const Color.fromARGB(255, 0, 0, 0),

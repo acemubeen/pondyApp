@@ -71,11 +71,14 @@ class _PlaceCardState extends State<PlaceCard> {
     bool _isTapped = false;
     return MaterialApp(
         home: Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Color(0xfff5f2e8),
       appBar: AppBar(
-        title: Text('Detail Card'),
+        title: Text(
+          'Detail Card',
+          style: TextStyle(fontSize: screenheight * .028, color: Colors.white),
+        ),
         elevation: 10,
-        backgroundColor: Color.fromARGB(255, 85, 132, 182),
+        backgroundColor: Color(0xff67c2bf),
       ),
       body: StreamBuilder(
         stream: _place.doc(widget.documentId).snapshots(),
@@ -273,11 +276,21 @@ class _PlaceCardState extends State<PlaceCard> {
                                     children: [
                                       Icon(
                                         Icons.type_specimen_outlined,
-                                        color:
-                                            Color.fromARGB(255, 143, 121, 111),
+                                        color: Color(0xff67c2bf),
                                         size: screenheight * .035,
                                       ),
-                                      Text(documentSnapshot['type'])
+                                      SizedBox(
+                                        width: screenwidth * .020,
+                                      ),
+                                      Text(
+                                        documentSnapshot['type'],
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromARGB(195, 39, 73, 109),
+                                          fontSize: screenheight * .020,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
                                     ],
                                   ),
                                 ),
@@ -325,7 +338,7 @@ class _PlaceCardState extends State<PlaceCard> {
                             Text(
                               'LOCATION',
                               style: TextStyle(
-                                color: Colors.black54,
+                                color: Color(0xff142850),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -343,7 +356,7 @@ class _PlaceCardState extends State<PlaceCard> {
                           child: Text(
                             documentSnapshot['location'],
                             style: TextStyle(
-                                color: Colors.black54,
+                                color: Color.fromARGB(195, 39, 73, 109),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -360,7 +373,7 @@ class _PlaceCardState extends State<PlaceCard> {
                             Text(
                               'DESCRIPTION',
                               style: TextStyle(
-                                color: Colors.black54,
+                                color: Color(0xff142850),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -378,7 +391,7 @@ class _PlaceCardState extends State<PlaceCard> {
                           child: Text(
                             documentSnapshot['description'],
                             style: TextStyle(
-                                color: Colors.black45,
+                                color: Color.fromARGB(195, 39, 73, 109),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w400),
                           ),

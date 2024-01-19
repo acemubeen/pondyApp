@@ -79,7 +79,7 @@ class _SigninPageState extends State<SigninPage> {
       },
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color.fromARGB(255, 248, 094, 094),
+        backgroundColor: Color(0xff608334),
         body: SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(
@@ -98,14 +98,15 @@ class _SigninPageState extends State<SigninPage> {
                           MediaQuery.of(context).size.width * 0.000,
                           MediaQuery.of(context).size.height * 0.000,
                         ),
-                        color: Color.fromARGB(255, 248, 094, 094),
+                        color: Color(0xff608334),
                         height: screenheight * 0.55,
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                               style: TextStyle(
-                                  color: Colors.white, // Text color
-                                  fontSize: 34,
+                                  color: Color(0xfff7feef),
+                                  fontSize: screenheight * .080,
+                                  // fontSize: 34,
                                   fontWeight: FontWeight.bold // Text size
                                   ),
                               "Login"),
@@ -161,19 +162,19 @@ class _SigninPageState extends State<SigninPage> {
                                         controller: emailController,
                                         decoration: InputDecoration(
                                           filled: true,
-                                          fillColor:
-                                              Color.fromARGB(54, 255, 255, 255),
+                                          fillColor: Color(0xfff7feef),
                                           labelText: 'Enter Your Email',
                                           labelStyle: TextStyle(
                                               color: Color.fromARGB(
-                                                  191, 137, 137, 137),
-                                              fontSize: 15,
+                                                  204, 96, 131, 52),
+                                              fontSize: screenheight * .037,
+                                              // fontSize: 15,
                                               fontWeight: FontWeight.w500),
                                           border: InputBorder.none,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 1),
+                                    SizedBox(height: screenheight * .003),
                                     Container(
                                       decoration: BoxDecoration(
                                         color:
@@ -186,13 +187,12 @@ class _SigninPageState extends State<SigninPage> {
                                         controller: passwordController,
                                         decoration: InputDecoration(
                                           filled: true,
-                                          fillColor:
-                                              Color.fromARGB(54, 255, 255, 255),
+                                          fillColor: Color(0xfff7feef),
                                           labelText: 'Password',
                                           labelStyle: TextStyle(
                                               color: Color.fromARGB(
-                                                  191, 137, 137, 137),
-                                              fontSize: 15,
+                                                  204, 96, 131, 52),
+                                              fontSize: screenheight * .037,
                                               fontWeight: FontWeight.w500),
                                           border: InputBorder.none,
                                         ),
@@ -212,7 +212,7 @@ class _SigninPageState extends State<SigninPage> {
                                   "Forgot Password?",
                                   style: TextStyle(
                                     color: Color.fromARGB(191, 137, 137, 137),
-                                    fontSize: 14,
+                                    fontSize: screenheight * .035,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -231,8 +231,7 @@ class _SigninPageState extends State<SigninPage> {
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color:
-                                            Color.fromARGB(255, 255, 127, 127),
+                                        color: Color(0xff97b770),
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(70))),
                                     height: screenheight * 0.140,
@@ -241,8 +240,7 @@ class _SigninPageState extends State<SigninPage> {
                                       child: Text(
                                         "Sign In",
                                         style: TextStyle(
-                                          color: const Color.fromARGB(
-                                              255, 255, 255, 255),
+                                          color: Color(0xffF7FEEF),
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -261,7 +259,8 @@ class _SigninPageState extends State<SigninPage> {
                                   "Or Continue with",
                                   style: TextStyle(
                                     color: Color.fromARGB(191, 137, 137, 137),
-                                    fontSize: 12,
+                                    fontSize: screenheight * .035,
+                                    // fontSize: 12,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -283,8 +282,7 @@ class _SigninPageState extends State<SigninPage> {
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: Color.fromARGB(
-                                              255, 255, 221, 121),
+                                          color: Color(0xff97b770),
                                           borderRadius:
                                               BorderRadius.circular(30)),
                                       padding: EdgeInsets.fromLTRB(
@@ -300,15 +298,13 @@ class _SigninPageState extends State<SigninPage> {
                                       height: 50,
                                       width: screenwidth * .500,
                                       child: Image.asset(
-                                        "assets/images/icons/ic1.png",
-                                        color: const Color.fromARGB(
-                                            255, 235, 82, 77),
-                                      ),
+                                          "assets/images/icons/ic1.png",
+                                          color: Color(0xfff7feef)),
                                     ),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: screenheight * .13 ),
+                              SizedBox(height: screenheight * .13),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -318,7 +314,7 @@ class _SigninPageState extends State<SigninPage> {
                                       style: TextStyle(
                                         color:
                                             Color.fromARGB(191, 137, 137, 137),
-                                        fontSize: 12,
+                                        fontSize: screenheight * .035,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -337,7 +333,7 @@ class _SigninPageState extends State<SigninPage> {
                                         "Register now",
                                         style: TextStyle(
                                           color: Colors.blue,
-                                          fontSize: 12,
+                                          fontSize: screenheight * .035,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),

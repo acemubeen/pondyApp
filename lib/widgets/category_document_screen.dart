@@ -20,9 +20,9 @@ class CategoryDocumentScreen extends StatelessWidget {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.grey[350],
+      backgroundColor: Color(0xfff5f2e8),
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey[400],
+        backgroundColor: Color(0xff67c2bf),
         title: Text(category),
       ),
       body: FutureBuilder<List<DocumentSnapshot>>(
@@ -70,7 +70,7 @@ class CategoryDocumentScreen extends StatelessWidget {
                             height: screenheight * 0.130,
                             width: screenwidth * 0.260,
                             decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 203, 203, 203),
+                              color: Color.fromARGB(255, 188, 187, 187),
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
                                   topLeft: Radius.circular(20)),
@@ -85,7 +85,7 @@ class CategoryDocumentScreen extends StatelessWidget {
                                   height: screenheight * 0.250,
                                   width: screenwidth * 0.650,
                                   decoration: const BoxDecoration(
-                                      color: Color.fromRGBO(255, 253, 234, 0.918),
+                                      color: Color.fromRGBO(86, 174, 204, 211),
                                       borderRadius: BorderRadius.only(
                                         bottomRight: Radius.circular(20),
                                         topRight: Radius.circular(20),
@@ -111,15 +111,16 @@ class CategoryDocumentScreen extends StatelessWidget {
                                             Container(
                                               child: Expanded(
                                                   child: Text(
-                                                documents[index]['name'],
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        screenwidth * 0.040,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color.fromARGB(
-                                                        211, 21, 21, 21)),
-                                              )),
+                                                      documents[index]['name'],
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            screenwidth * 0.040,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color:
+                                                            Color(0xff142850),
+                                                      ))),
                                             )
                                           ],
                                         ),
@@ -140,8 +141,7 @@ class CategoryDocumentScreen extends StatelessWidget {
                                             Icon(
                                               size: screenheight * 0.030,
                                               Icons.location_on_outlined,
-                                              color: Color.fromARGB(
-                                                  255, 242, 155, 155),
+                                              color: Color(0xff67c2bf),
                                             ),
                                             SizedBox(
                                               width: screenwidth * .47,
@@ -153,7 +153,7 @@ class CategoryDocumentScreen extends StatelessWidget {
                                                         screenwidth * 0.029,
                                                     fontWeight: FontWeight.w500,
                                                     color: Color.fromARGB(
-                                                        211, 21, 21, 21)),
+                                                        195, 39, 73, 109)),
                                               ),
                                             ),
                                           ],
@@ -186,11 +186,10 @@ class CategoryDocumentScreen extends StatelessWidget {
                                                 documents[index]['type'],
                                                 maxLines: 1,
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        screenwidth * 0.030,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color.fromARGB(
-                                                        211, 21, 21, 21)),
+                                                  fontSize: screenwidth * 0.030,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xff2364aa),
+                                                ),
                                               ),
                                             ),
                                           ],
