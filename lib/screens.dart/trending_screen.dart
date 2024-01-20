@@ -3,20 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pondyapp/screens.dart/detailcard.dart';
 
-class TrendingScreen extends StatelessWidget {
-  
-  
+class TrendingScreen extends StatefulWidget {
   const TrendingScreen({super.key});
- Stream<List<DocumentSnapshot>> getTrendingStream() {
+
+  @override
+  State<TrendingScreen> createState() => _TrendingScreenState();
+}
+
+class _TrendingScreenState extends State<TrendingScreen> {
+  late final Stream<List<DocumentSnapshot>> _trendingStream;
+
+    @override
+  void initState() {
+    super.initState();
+    _trendingStream = getTrendingStream();
+  }
+  Stream<List<DocumentSnapshot>> getTrendingStream() {
+
   // Replace 'trending_place' with the name of your Firestore collection
   return FirebaseFirestore.instance
       .collection('place')
-      .where(FieldPath.documentId, whereIn: ['112', '111', '143','001','122']) // Filter by document IDs
+      .where(FieldPath.documentId, whereIn: ['112','111','110','131','132','133',]) // Filter by document IDs
       .snapshots()
       .map((snapshot) => snapshot.docs);
-}
-
-
+  }
 
 
   @override
@@ -56,8 +66,20 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
         // Return a Column with the trending places widgets
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.grey,
-            title: Text('Trending & Top Places'),
+            leading: IconButton(
+          icon: Icon(Icons.arrow_back_rounded,
+          color: Colors.grey[200],
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+            backgroundColor: Color(0xff67c2bf),
+            title: Text('Trending & Top Places',
+            style: TextStyle(
+              color: Color(0xfff5f2e8),
+            ),
+            ),
            
           ),
           body:SingleChildScrollView(
@@ -75,6 +97,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
       },
     );
   }
+
   @override
   Widget TrendingPlaces(BuildContext context, image, String tpname, String location, String type,
       String documentId) {
@@ -106,8 +129,18 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
         height: screenheight * 0.125,
         width: screenwidth * 0.870,
         decoration: BoxDecoration(
+            boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 111, 111, 111)
+                                        .withOpacity(0.1), // Shadow color
+                                    offset:
+                                        Offset(2, 3), // Offset of the shadow
+                                    blurRadius: 30, // Amount of blur
+                                    spreadRadius: 0,
+                                  ),
+                                ],
           borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(0, 67, 63, 63),
+          
         ),
 
         ////////////
@@ -117,15 +150,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                 height: screenheight * 0.150,
                 width: screenwidth * 0.250,
                 decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 0, 0, 0)
-                            .withOpacity(0.2), // Shadow color
-                        offset: Offset(-1, 3), // Offset of the shadow
-                        blurRadius: 5, // Amount of blur
-                        spreadRadius: 2,
-                      ),
-                    ],
+                   
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         topLeft: Radius.circular(10)),
@@ -138,20 +163,12 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                 height: screenheight * 0.250,
                 width: screenwidth * 0.650,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 111, 111, 111)
-                          .withOpacity(0.2), // Shadow color
-                      offset: Offset(2, 3), // Offset of the shadow
-                      blurRadius: 5, // Amount of blur
-                      spreadRadius: 2,
-                    ),
-                  ],
+                
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
-                  color: Color.fromARGB(255, 255, 252, 245),
+                  color:  Color.fromARGB(255, 228, 243, 254),
                 ),
                 child: Column(
                   children: [
@@ -176,7 +193,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                                 style: TextStyle(
                                     fontSize: screenwidth * 0.045,
                                     fontWeight: FontWeight.w500,
-                                    color: Color.fromARGB(211, 21, 21, 21)),
+                                    color: Color(0xff142850)),
                               ),
                             ),
                           ),
@@ -195,7 +212,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                           Icon(
                             size: screenheight * 0.030,
                             Icons.location_on_outlined,
-                            color: Color.fromARGB(173, 239, 89, 89),
+                            color: Color(0xff67c2bf),
                           ),
                           Expanded(
                             child: Text(
@@ -205,7 +222,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(194, 1, 41, 59)),
+                                  color: Color.fromARGB(195,39,73,109)),
                             ),
                           ),
                         ],
@@ -228,7 +245,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(213, 105, 64, 5)),
+                                  color: Colors.blueGrey),
                             ),
                           ),
                           FittedBox(
@@ -239,7 +256,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(199, 4, 98, 115)),
+                                  color: Color(0xff2364aa)),
                             ),
                           ),
                         ],

@@ -83,18 +83,27 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       body: _children[_currentIndex],
       bottomNavigationBar: Container(
         child: BottomNavigationBar(
-          backgroundColor: Color.fromARGB(255, 127, 205, 249),
-          type: BottomNavigationBarType.fixed,
+          backgroundColor: Color.fromARGB(255, 41, 179, 174),
+          type: BottomNavigationBarType.shifting,
+         
+          selectedItemColor:  Color.fromARGB(255, 209, 255, 246),
           currentIndex: _currentIndex,
           onTap: onTappedBar,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home",
+           backgroundColor: Color.fromARGB(255, 82, 180, 178),
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.category_rounded), label: "Category"),
+                icon: Icon(Icons.category_rounded), label: "Category",
+                  backgroundColor: Color.fromARGB(255, 82, 180, 178),),
             BottomNavigationBarItem(
-                icon: Icon(Icons.save_sharp), label: "Saved"),
+                icon: Icon(Icons.save_sharp), label: "Saved",
+                   backgroundColor: Color.fromARGB(255, 82, 180, 178),
+                ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.explicit), label: "Explore")
+                icon: Icon(Icons.explicit), label: "Explore",
+                      backgroundColor: Color.fromARGB(255, 82, 180, 178),
+                )
           ],
         ),
       ),

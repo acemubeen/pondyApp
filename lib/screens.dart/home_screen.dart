@@ -48,7 +48,7 @@ class _MyWidgetState extends State<HomeScreen> {
   final currentIndexNotifier = ValueNotifier<int>(0);
 
   late Future<List<Map<String, dynamic>>> futureImageList;
-  List<String> documentIdsToShow = ['docId1', 'docId2', 'docId3'];
+  List<String> documentIdsToShow = [];
 
   Future<List<Map<String, dynamic>>> fetchDocumentsFromFirestore() async {
     QuerySnapshot querySnapshot =
@@ -572,45 +572,48 @@ class _MyWidgetState extends State<HomeScreen> {
   }
 
   StreamBuilder<QuerySnapshot> buildTopPlaces() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: getThirdPageStream(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text('Something went wrong');
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        }
-        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Text('No Data Available');
-        }
-        // Create a list of widgets for the top places
-        List<Widget> topPlacesWidgets = [];
-        for (var i = 0; i < snapshot.data!.docs.length && i < 3; i++) {
-          final DocumentSnapshot documentSnapshot = snapshot.data!.docs[i];
-          Map<String, dynamic> data =
-              documentSnapshot.data() as Map<String, dynamic>? ?? {};
-          String location = data['location'] as String? ?? 'Unknown location';
-          String documentId = documentSnapshot.id;
-          topPlacesWidgets.add(Container(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height * .030),
-            child: TopPlaces(
-              data['image'] as String? ?? '',
-              data['name'] as String? ?? 'No name',
-              location,
-              data['type'] as String? ?? 'No type',
-              documentId,
-            ),
-          ));
-        }
-        // Return a Column with the top places widgets
-        return Column(
-          children: topPlacesWidgets,
+  // List of specific document IDs you want to display
+  List<String> documentIds = ['143', '132', '133'];
+
+  return StreamBuilder<QuerySnapshot>(
+    stream: FirebaseFirestore.instance
+        .collection('place')
+        .where(FieldPath.documentId, whereIn: documentIds)
+        .snapshots(),
+    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      if (snapshot.hasError) {
+        return Text('Something went wrong');
+      }
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+      }
+      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+        return Text('No Data Available');
+      }
+      // Create a list of widgets for the top places
+      List<Widget> topPlacesWidgets = snapshot.data!.docs.map((doc) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>? ?? {};
+        String location = data['location'] as String? ?? 'Unknown location';
+        String documentId = doc.id;
+        return Container(
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height * .030),
+          child: TopPlaces(
+            data['image'] as String? ?? '',
+            data['name'] as String? ?? 'No name',
+            location,
+            data['type'] as String? ?? 'No type',
+            documentId,
+          ),
         );
-      },
-    );
-  }
+      }).toList();
+      // Return a Column with the top places widgets
+      return Column(
+        children: topPlacesWidgets,
+      );
+    },
+  );
+}
 
   @override
   Widget TopPlaces(String image, String tpname, String location, String type,
@@ -636,17 +639,17 @@ class _MyWidgetState extends State<HomeScreen> {
         height: screenheight * 0.125,
         width: screenwidth * 0.870,
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: const Color.fromARGB(255, 0, 0, 0)
-                  .withOpacity(0.1), // Shadow color
-              offset: Offset(-1, 3), // Offset of the shadow
-              blurRadius: 20, // Amount of blur
-              spreadRadius: 1,
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: const Color.fromARGB(255, 0, 0, 0)
+          //         .withOpacity(0.1), // Shadow color
+          //     offset: Offset(-1, 3), // Offset of the shadow
+          //     blurRadius: 20, // Amount of blur
+          //     spreadRadius: 1,
+          //   ),
+          // ],
           borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(86, 174, 204, 211),
+         
         ),
 
         ////////////
@@ -672,7 +675,7 @@ class _MyWidgetState extends State<HomeScreen> {
                     bottomRight: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
-                  color: Color.fromARGB(86, 174, 204, 211),
+                  color: Color.fromARGB(143, 192, 221, 228),
                 ),
                 child: Column(
                   children: [

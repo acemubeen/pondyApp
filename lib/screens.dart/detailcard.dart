@@ -73,6 +73,14 @@ class _PlaceCardState extends State<PlaceCard> {
         home: Scaffold(
       backgroundColor: Color(0xfff5f2e8),
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_rounded,
+          color: Colors.grey[700],
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'Detail Card',
           style: TextStyle(fontSize: screenheight * .028, color: Colors.white),
@@ -302,21 +310,40 @@ class _PlaceCardState extends State<PlaceCard> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Container(
-                                        //link icon
-
-                                        // Link Icon Container
-                                        height: screenheight * .12,
-                                        width: screenwidth * .12,
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.grey[300],
-                                          child: Icon(
-                                            Icons.link,
-                                            color: Colors.black45,
-                                            size: screenheight * .040,
-                                          ),
-                                        ),
-                                      ),
+                                     Container(
+  // Link Icon Container
+  height: screenheight * .12,
+  width: screenwidth * .12,
+  child: CircleAvatar(
+    backgroundColor: Colors.grey[300],
+    child: InkWell(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Sorry 😉'),
+              content: Text("The Developer wasn't programmed to copy this link"),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      },
+      child: Icon(
+        Icons.link,
+        color: Colors.black45,
+        size: screenheight * .040,
+      ),
+    ),
+  ),
+),
                                       SizedBox(
                                         width: screenwidth * .040,
                                       )
