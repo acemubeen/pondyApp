@@ -1,27 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Explore extends StatefulWidget {
-  Explore({super.key});
+  const Explore({super.key});
 
   @override
   State<Explore> createState() => _ExploreState();
 }
 
 class _ExploreState extends State<Explore> {
-  final CollectionReference _place =
-      FirebaseFirestore.instance.collection('places');
   @override
   Widget build(BuildContext context) {
-    double screenwidth = MediaQuery.of(context).size.width;
-    double screenheight = MediaQuery.of(context).size.height;
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 233, 233, 233),
+        backgroundColor: const Color.fromARGB(255, 233, 233, 233),
         appBar: AppBar(
           backgroundColor: Colors.grey,
-          title: Text(
+          title: const Text(
             "Explore Page",
             style: TextStyle(
               fontSize: 20,
@@ -38,14 +32,14 @@ class _ExploreState extends State<Explore> {
               // TopPlaces('001', 'Gojo saturo', 'shibuysa incident', 'anime'),
               // TopPlaces('002', 'Rock Beach', '..', 'Beach'),
               // PlaceCards('001', "Gojo saturo", 'tpname', 'location', 'type'),
-              TopPlaces('001', "Gojo saturo", 'tpname', 'location'),
-              TopPlaces('002', "Gojo saturo", 'tpname', 'location'),
-              TopPlaces('003', "Gojo saturo", 'tpname', 'location'),
-              TopPlaces('005', "Gojo saturo", 'tpname', 'location'),
-              TopPlaces('005', "Gojo saturo", 'tpname', 'location'),
-              TopPlaces('005', "Gojo saturo", 'tpname', 'location'),
-              TopPlaces('005', "Gojo saturo", 'tpname', 'location'),
-              TopPlaces('005', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('001', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('002', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('003', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('005', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('005', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('005', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('005', "Gojo saturo", 'tpname', 'location'),
+              topPlaces('005', "Gojo saturo", 'tpname', 'location'),
               // LissTiile(),
             ],
           ),
@@ -61,8 +55,8 @@ class _ExploreState extends State<Explore> {
 
 */
 
-  @override
-  Widget TopPlaces(String image, String tpname, String location, String type) {
+  
+  Widget topPlaces(String image, String tpname, String location, String type) {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
 
@@ -88,8 +82,8 @@ class _ExploreState extends State<Explore> {
               height: screenheight * 0.130,
               width: screenwidth * 0.260,
               decoration: BoxDecoration(
-                  color: Color.fromARGB(234, 255, 255, 255),
-                  borderRadius: BorderRadius.only(
+                  color: const Color.fromARGB(234, 255, 255, 255),
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       topLeft: Radius.circular(20)),
                   image: DecorationImage(
@@ -102,7 +96,7 @@ class _ExploreState extends State<Explore> {
               child: Container(
                 height: screenheight * 0.250,
                 width: screenwidth * 0.650,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color.fromARGB(234, 255, 255, 255),
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(20),
@@ -121,16 +115,15 @@ class _ExploreState extends State<Explore> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                            child: Expanded(
-                              child: Text(
-                                "$tpname",
-                                maxLines: 2,
-                                style: TextStyle(
-                                    fontSize: screenwidth * 0.045,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color.fromARGB(211, 21, 21, 21)),
-                              ),
+                          Expanded(
+                            child: Text(
+                              tpname,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontSize: screenwidth * 0.045,
+                                  fontWeight: FontWeight.w500,
+                                  color:
+                                      const Color.fromARGB(211, 21, 21, 21)),
                             ),
                           ),
                         ],
@@ -148,7 +141,7 @@ class _ExploreState extends State<Explore> {
                           Icon(
                             size: screenheight * 0.030,
                             Icons.location_on_outlined,
-                            color: Color.fromARGB(255, 242, 155, 155),
+                            color: const Color.fromARGB(255, 242, 155, 155),
                           ),
                           SizedBox(
                             width: screenwidth * .47,
@@ -158,7 +151,7 @@ class _ExploreState extends State<Explore> {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.029,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(211, 21, 21, 21)),
+                                  color: const Color.fromARGB(211, 21, 21, 21)),
                             ),
                           ),
                         ],
@@ -178,17 +171,17 @@ class _ExploreState extends State<Explore> {
                             style: TextStyle(
                                 fontSize: screenwidth * 0.030,
                                 fontWeight: FontWeight.w500,
-                                color: Color.fromARGB(145, 0, 0, 0)),
+                                color: const Color.fromARGB(145, 0, 0, 0)),
                           ),
                           FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              "$type",
+                              type,
                               maxLines: 1,
                               style: TextStyle(
                                   fontSize: screenwidth * 0.030,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(211, 21, 21, 21)),
+                                  color: const Color.fromARGB(211, 21, 21, 21)),
                             ),
                           ),
                         ],

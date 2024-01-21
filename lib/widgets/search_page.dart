@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:pondyapp/screens.dart/detailcard.dart';
 
 class SearchPage extends StatefulWidget {
-  SearchPage({super.key});
+  const SearchPage({super.key});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -29,22 +28,68 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.grey, title: Text('Search')),
+      appBar: AppBar(
+          backgroundColor: const Color(0xff67c2bf),
+          title: const Text(
+            'Search',
+            style: TextStyle(color: Color(0xfff5f2e8)),
+          )),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(15.0),
+          Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(177, 255, 204, 190),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            height: screenheight * 0.057,
+            width: screenwidth * 0.890,
+            margin: EdgeInsets.symmetric(
+              horizontal: screenwidth * 0.070,
+              vertical: screenheight * 0.040,
+            ),
             child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Search Places",
-              ),
               onChanged: (query) {
                 searchFromFirebase(query);
               },
+              style: TextStyle(
+                fontSize: screenheight * .023,
+                fontWeight: FontWeight.w500,
+                color: const Color.fromARGB(
+                    255, 182, 119, 103), // Set your desired color here
+              ),
+              decoration: InputDecoration(
+                hintText: "Search for the best",
+                hintStyle: TextStyle(
+                  fontSize: screenheight * 0.0210,
+                  color: const Color.fromARGB(255, 182, 119, 103),
+                ),
+                border: InputBorder.none,
+                prefixIcon: Icon(
+                  Icons.search_rounded,
+                  color: const Color.fromARGB(255, 182, 119, 103),
+                  size: screenheight * .045,
+                ),
+              ),
             ),
           ),
+
+          /// V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^V^
+
+          // Padding(
+          //   padding: const EdgeInsets.all(15.0),
+          //   child: TextField(
+          //     decoration: InputDecoration(
+          //       border: OutlineInputBorder(),
+          //       hintText: "Search Places",
+          //     ),
+          //     onChanged: (query) {
+          //       searchFromFirebase(query);
+          //     },
+          //   ),
+          // ),
           Expanded(
             child: ListView.builder(
               itemCount: placeResult.length,
@@ -74,3 +119,39 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
+
+/*
+child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(177, 255, 204, 190),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    height: screenheight * 0.057,
+                    width: screenwidth * 0.890,
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenwidth * 0.070,
+                        vertical: screenheight * 0.040),
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: screenwidth * .05,
+                        ),
+                        Text(
+                          "Search for the best",
+                          style: TextStyle(
+                            fontSize: screenheight * 0.0210,
+                            color: Color.fromARGB(255, 182, 119, 103),
+                          ),
+                        ),
+                        SizedBox(
+                          width: screenwidth * .290,
+                        ),
+                        Icon(
+                          Icons.search_rounded,
+                          color: Color.fromARGB(255, 182, 119, 103),
+                          size: screenheight * .045,
+                        ),
+                      ],
+                    ),
+                  ),
+*/

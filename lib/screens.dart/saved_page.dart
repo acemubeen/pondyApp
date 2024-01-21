@@ -1,23 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pondyapp/savedcards.dart';
 import 'package:pondyapp/screens.dart/detailcard.dart';
-import 'package:pondyapp/screens.dart/home_screen.dart';
-import 'package:pondyapp/screens.dart/profile.dart';
 import 'package:provider/provider.dart';
 
 class SavedPage extends StatefulWidget {
-  final CollectionReference _place =
-      FirebaseFirestore.instance.collection('place');
+  const SavedPage({super.key});
+
 
   @override
   State<SavedPage> createState() => _SavedPageState();
 }
 
 class _SavedPageState extends State<SavedPage> {
-  final CollectionReference _place =
-      FirebaseFirestore.instance.collection('place');
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -29,12 +24,15 @@ class _SavedPageState extends State<SavedPage> {
     // If there are no saved items, display a message
     if (savedItems.isEmpty) {
       return Scaffold(
-        backgroundColor: Color(0xfff5f2e8),
+        backgroundColor: const Color(0xfff5f2e8),
         appBar: AppBar(
-          title: Text('Saved Places'),
-          backgroundColor: Color.fromARGB(255, 58, 137, 183),
+          title: const Text(
+            'Saved Places',
+            style: TextStyle(color: Color(0xfff5f2e8)),
+          ),
+          backgroundColor: const Color(0xff67c2bf),
         ),
-        body: Center(
+        body: const Center(
           child: Text("No Saved items"),
         ),
       );
@@ -49,9 +47,9 @@ class _SavedPageState extends State<SavedPage> {
             color: Colors.grey[200],
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 58, 137, 183),
+        backgroundColor: const Color.fromARGB(255, 58, 137, 183),
       ),
-      backgroundColor: Color(0xfff5f2e8),
+      backgroundColor: const Color(0xfff5f2e8),
       body: ListView.builder(
         itemCount: savedItems.length,
         itemBuilder: (context, index) {
@@ -66,16 +64,14 @@ class _SavedPageState extends State<SavedPage> {
             builder: (BuildContext context,
                 AsyncSnapshot<DocumentSnapshot> snapshot) {
               if (snapshot.hasError) {
-                return Text("Something went wrong");
+                return const Text("Something went wrong");
               }
 
               if (snapshot.hasData && !snapshot.data!.exists) {
-                return Text("Document does not exist");
+                return const Text("Document does not exist");
               }
 
               if (snapshot.connectionState == ConnectionState.done) {
-                Map<String, dynamic> data =
-                    snapshot.data!.data() as Map<String, dynamic>;
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -106,15 +102,15 @@ class _SavedPageState extends State<SavedPage> {
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color.fromARGB(255, 111, 111, 111)
+                                  color: const Color.fromARGB(255, 111, 111, 111)
                                       .withOpacity(0.2), // Shadow color
-                                  offset: Offset(2, 3), // Offset of the shadow
+                                  offset: const Offset(2, 3), // Offset of the shadow
                                   blurRadius: 30, // Amount of blur
                                   spreadRadius: 6,
                                 ),
                               ],
                               color: Colors.white,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
                                   topLeft: Radius.circular(20)),
                               image: DecorationImage(
@@ -126,7 +122,7 @@ class _SavedPageState extends State<SavedPage> {
                               child: Container(
                                   height: screenheight * 0.250,
                                   width: screenwidth * 0.650,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       color: Color.fromARGB(86, 174, 204, 211),
                                       borderRadius: BorderRadius.only(
                                         bottomRight: Radius.circular(20),
@@ -150,18 +146,16 @@ class _SavedPageState extends State<SavedPage> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: <Widget>[
-                                            Container(
-                                              child: Expanded(
-                                                  child: Text(
-                                                snapshot.data!['name'],
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                  fontSize: screenwidth * 0.040,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xff142850),
-                                                ),
-                                              )),
-                                            )
+                                            Expanded(
+                                                child: Text(
+                                              snapshot.data!['name'],
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                fontSize: screenwidth * 0.040,
+                                                fontWeight: FontWeight.w500,
+                                                color: const Color(0xff142850),
+                                              ),
+                                            ))
                                           ],
                                         ),
                                       ),
@@ -181,7 +175,7 @@ class _SavedPageState extends State<SavedPage> {
                                             Icon(
                                               size: screenheight * 0.030,
                                               Icons.location_on_outlined,
-                                              color: Color(0xff67c2bf),
+                                              color: const Color(0xff67c2bf),
                                             ),
                                             SizedBox(
                                               width: screenwidth * .47,
@@ -191,7 +185,7 @@ class _SavedPageState extends State<SavedPage> {
                                                 style: TextStyle(
                                                   fontSize: screenwidth * 0.029,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       195, 39, 73, 109),
                                                 ),
                                               ),
@@ -217,7 +211,7 @@ class _SavedPageState extends State<SavedPage> {
                                               style: TextStyle(
                                                   fontSize: screenwidth * 0.030,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       145, 0, 0, 0)),
                                             ),
                                             FittedBox(
@@ -228,7 +222,7 @@ class _SavedPageState extends State<SavedPage> {
                                                 style: TextStyle(
                                                   fontSize: screenwidth * 0.030,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color(0xff2364aa),
+                                                  color: const Color(0xff2364aa),
                                                 ),
                                               ),
                                             ),
@@ -244,7 +238,7 @@ class _SavedPageState extends State<SavedPage> {
                 );
               }
 
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             },
           );
         },

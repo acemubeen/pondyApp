@@ -1,9 +1,12 @@
+
+
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:pondyapp/widgets/category_document_screen.dart';
 import '../constants.dart';
-import 'package:shimmer/shimmer.dart';
 
 class Category extends StatelessWidget {
   const Category({super.key});
@@ -13,21 +16,19 @@ class Category extends StatelessWidget {
         .collection('place')
         .where('type', isEqualTo: category)
         .get();
-    return querySnapshot.docs ?? [];
+    return querySnapshot.docs;
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenwidth = MediaQuery.of(context).size.width;
-    double screenheight = MediaQuery.of(context).size.width;
-
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xfff5f2e8),
+        backgroundColor: const Color(0xfff5f2e8),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 58, 137, 183),
-          title: Center(
-            child: Text("Category"),
+          backgroundColor: const Color(0xff67c2bf),
+          title: const Text(
+            "Category",
+            style: TextStyle(color: Color(0xfff5f2e8)),
           ),
         ),
         body: SingleChildScrollView(
@@ -43,9 +44,9 @@ class Category extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    CategoryLists(context, cat1, 'm1'),
-                    CategoryLists(context, cat2, 'm2'),
-                    CategoryLists(context, cat3, 'm3'),
+                    categoryLists(context, cat1, 'm1'),
+                    categoryLists(context, cat2, 'm2'),
+                    categoryLists(context, cat3, 'm3'),
                   ],
                 ),
               ),
@@ -59,9 +60,9 @@ class Category extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    CategoryLists(context, cat4, 'm4'),
-                    CategoryLists(context, cat5, 'm5'),
-                    CategoryLists(context, cat6, 'm6'),
+                    categoryLists(context, cat4, 'm4'),
+                    categoryLists(context, cat5, 'm5'),
+                    categoryLists(context, cat6, 'm6'),
                   ],
                 ),
               ),
@@ -72,8 +73,7 @@ class Category extends StatelessWidget {
     );
   }
 
-  @override
-  Widget CategoryLists(BuildContext context, String catname, String catimage) {
+  Widget categoryLists(BuildContext context, String catname, String catimage) {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.width;
 
@@ -98,7 +98,7 @@ class Category extends StatelessWidget {
               children: <Widget>[
                 FutureBuilder<List<DocumentSnapshot>>(
                   future: Future.wait([
-                    Future.delayed(Duration(
+                    Future.delayed(const Duration(
                         seconds: 2)), // This introduces a 2-second delay.
                     getDocumentsByCategory(catname),
                   ]).then((results) => results.last as List<
@@ -111,7 +111,6 @@ class Category extends StatelessWidget {
                         ConnectionState.waiting) {
                       return Container();
                     } else {
-                      List<DocumentSnapshot> documents = snapshot.data ?? [];
                       return Container();
                     }
                   },
@@ -120,7 +119,7 @@ class Category extends StatelessWidget {
                   decoration: BoxDecoration(
                     // color: Color.fromARGB(251, 0, 0, 0),
                     border: Border.all(
-                      color: Color.fromARGB(34, 133, 129, 104),
+                      color: const Color.fromARGB(34, 133, 129, 104),
                       width: 5.9,
                     ),
                     borderRadius: BorderRadius.circular(20),
@@ -149,13 +148,22 @@ class Category extends StatelessWidget {
                     MediaQuery.of(context).size.width * 0.000,
                     MediaQuery.of(context).size.height * 0.000,
                   ),
+                  padding: EdgeInsets.fromLTRB(
+                    MediaQuery.of(context).size.width * 0.000,
+                    MediaQuery.of(context).size.height * 0.00,
+                    MediaQuery.of(context).size.width * 0.000,
+                    MediaQuery.of(context).size.height * 0.000,
+                  ),
+                  //color: Color.fromARGB(112, 130, 130, 130),
+                  height: screenheight * 0.100,
+                  width: screenwidth * 0.250,
                   child: Center(
                     child: Text(
-                      '$catname',
+                      catname,
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       style: TextStyle(
-                          shadows: [
+                          shadows: const [
                             Shadow(
                               color: Color.fromRGBO(0, 0, 0, 0.511),
                               // color: Color.fromARGB(255, 159, 159, 159),
@@ -168,15 +176,6 @@ class Category extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.000,
-                    MediaQuery.of(context).size.height * 0.00,
-                    MediaQuery.of(context).size.width * 0.000,
-                    MediaQuery.of(context).size.height * 0.000,
-                  ),
-                  //color: Color.fromARGB(112, 130, 130, 130),
-                  height: screenheight * 0.100,
-                  width: screenwidth * 0.250,
                 ),
               ],
             ),
@@ -186,7 +185,7 @@ class Category extends StatelessWidget {
               builder: (BuildContext context,
                   AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: null);
+                  return const Center(child: null);
                 } else {
                   return Container();
                 }

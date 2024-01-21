@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pondyapp/savedcards.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pondyapp/test/test.dart';
+
 import 'package:provider/provider.dart';
 import 'package:pondyapp/screens.dart/Category.dart';
 import 'package:pondyapp/account/signin_page.dart';
@@ -10,7 +10,7 @@ import 'package:pondyapp/screens.dart/profile.dart';
 import 'package:pondyapp/screens.dart/home_screen.dart';
 import 'package:pondyapp/screens.dart/saved_page.dart';
 import 'firebase_options.dart';
-import 'package:shimmer/shimmer.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ void main() async {
 
   runApp(ChangeNotifierProvider<SavedItemsProvider>(
     create: (context) => SavedItemsProvider(),
-    child: MaterialApp(
+    child: const MaterialApp(
       home: MyApp(),
       // Test(),
       // MyApp(),
@@ -29,6 +29,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -38,11 +40,11 @@ class MyApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active) {
           User? user = snapshot.data;
           if (user == null) {
-            return SigninPage();
+            return const SigninPage();
           }
-          return MyBottomNavigationBar();
+          return const MyBottomNavigationBar();
         }
-        return Scaffold(
+        return const Scaffold(
           body: Center(child: CircularProgressIndicator()),
         );
       },
@@ -61,14 +63,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-    HomeScreen(),
-    Category(),
-    SavedPage(),
+    const HomeScreen(),
+    const Category(),
+    const SavedPage(),
     //Explore(),
 
     //SavedNb(),
     // GoogleMaps(),
-    ProfileNb(),
+    const ProfileNb(),
   ];
 
   void onTappedBar(int index) {
@@ -80,31 +82,42 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff5f2e8),
       body: _children[_currentIndex],
-      bottomNavigationBar: Container(
-        child: BottomNavigationBar(
-          backgroundColor: Color.fromARGB(255, 41, 179, 174),
-          type: BottomNavigationBarType.shifting,
-         
-          selectedItemColor:  Color.fromARGB(255, 209, 255, 246),
-          currentIndex: _currentIndex,
-          onTap: onTappedBar,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home",
-           backgroundColor: Color.fromARGB(255, 82, 180, 178),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.category_rounded), label: "Category",
-                  backgroundColor: Color.fromARGB(255, 82, 180, 178),),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.save_sharp), label: "Saved",
-                   backgroundColor: Color.fromARGB(255, 82, 180, 178),
-                ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.explicit), label: "Explore",
-                      backgroundColor: Color.fromARGB(255, 82, 180, 178),
-                )
-          ],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(20)), // Adjust the radius as needed
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 0), // This lifts the navigation bar up
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.shifting,
+            selectedItemColor: const Color.fromARGB(255, 18, 80, 67),
+            currentIndex: _currentIndex,
+            onTap: onTappedBar,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Home",
+                backgroundColor: Color.fromARGB(255, 82, 180, 178),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.category_rounded),
+                label: "Category",
+                backgroundColor: Color.fromARGB(255, 82, 180, 178),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.save_sharp),
+                label: "Saved",
+                backgroundColor: Color.fromARGB(255, 82, 180, 178),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.explicit),
+                label: "Explore",
+                backgroundColor: Color.fromARGB(255, 82, 180, 178),
+              ),
+            ],
+          ),
         ),
       ),
     );

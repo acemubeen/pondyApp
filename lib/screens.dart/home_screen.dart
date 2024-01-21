@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pondyapp/screens.dart/detailcard.dart';
 import 'package:pondyapp/screens.dart/trending_screen.dart';
-import 'package:pondyapp/test/test.dart';
+
 import 'dart:async';
 import 'package:pondyapp/widgets/category_document_screen.dart';
 import '../constants.dart';
@@ -15,7 +15,7 @@ final ValueNotifier<int> _currentIndexNotifier = ValueNotifier<int>(0);
 
 // rest of the code
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _MyWidgetState();
@@ -76,12 +76,6 @@ class _MyWidgetState extends State<HomeScreen> {
 
   int currentIndex = 0;
 
-  void _onTabTapped(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
   bool isBellPressed = false;
   bool isMenuPressed = false;
   bool isProfPressed = false;
@@ -92,21 +86,20 @@ class _MyWidgetState extends State<HomeScreen> {
 
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xfff5f2e8),
+        backgroundColor: const Color(0xfff5f2e8),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(screenheight * 0.075),
           child: AppBar(
-            elevation: 0,
-            backgroundColor: Color(0xff67c2bf),
+            backgroundColor: const Color(0xff67c2bf),
             title: Text(
-              "Welcome to Pondy",
+              "Blissful Pondy",
               style: TextStyle(
-                color: Colors.white70,
-                fontSize: screenheight * 0.025,
-              ),
+                  color: const Color(0xffc6ea8d),
+                  fontSize: screenheight * 0.030,
+                  fontWeight: FontWeight.w600),
             ),
             centerTitle: true,
-            actions: <Widget>[
+            actions: const <Widget>[
               // Builder(
               //   builder: (context) => IconButton(
               //     iconSize: screenheight * 0.040,
@@ -175,396 +168,386 @@ class _MyWidgetState extends State<HomeScreen> {
         //   ),
         // ),
         body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                ClipPath(
-                  clipper: MyClip(),
-                  child: Container(
-                    height: screenheight * 0.200,
-                    color: Color(0xff67c2bf),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.fromLTRB(
-                              MediaQuery.of(context).size.width * 0.060,
-                              MediaQuery.of(context).size.height * 0.000,
-                              MediaQuery.of(context).size.width * 0.000,
-                              MediaQuery.of(context).size.height * 0.000,
-                            ),
-                            child: Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      child: Text(
-                                        "Explore",
-                                        style: TextStyle(
-                                            color: Color(0xffffe28a),
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: screenheight * 0.040),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+          child: Column(
+            children: <Widget>[
+              ClipPath(
+                clipper: MyClip(),
+                child: Container(
+                  height: screenheight * 0.200,
+                  color: const Color(0xff67c2bf),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.fromLTRB(
+                            MediaQuery.of(context).size.width * 0.060,
+                            MediaQuery.of(context).size.height * 0.000,
+                            MediaQuery.of(context).size.width * 0.000,
+                            MediaQuery.of(context).size.height * 0.000,
                           ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(
-                              MediaQuery.of(context).size.width * 0.060,
-                              MediaQuery.of(context).size.height * 0.000,
-                              MediaQuery.of(context).size.width * 0.000,
-                              MediaQuery.of(context).size.height * 0.040,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    height: screenheight * .052,
-                                    width: 200,
-                                    //color: const Color.fromARGB(40, 255, 214, 64),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Pondichéry",
-                                          style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: screenheight * 0.040,
-                                          ),
+                          child: Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Explore",
+                                    style: TextStyle(
+                                        color: const Color(0xffffe28a),
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: screenheight * 0.040),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(
+                            MediaQuery.of(context).size.width * 0.060,
+                            MediaQuery.of(context).size.height * 0.000,
+                            MediaQuery.of(context).size.width * 0.000,
+                            MediaQuery.of(context).size.height * 0.040,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: SizedBox(
+                                  height: screenheight * .052,
+                                  width: 200,
+                                  //color: const Color.fromARGB(40, 255, 214, 64),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "Pondichéry",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: screenheight * 0.040,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: screenheight * 0.025),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SearchPage()),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(177, 255, 204, 190),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    height: screenheight * 0.057,
-                    width: screenwidth * 0.890,
-                    margin: EdgeInsets.symmetric(
-                        horizontal: screenwidth * 0.070,
-                        vertical: screenheight * 0.040),
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: screenwidth * .05,
-                        ),
-                        Text(
-                          "Search for the best",
-                          style: TextStyle(
-                            fontSize: screenheight * 0.0210,
-                            color: Color.fromARGB(255, 182, 119, 103),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          width: screenwidth * .290,
-                        ),
-                        Icon(
-                          Icons.search_rounded,
-                          color: Color.fromARGB(255, 182, 119, 103),
-                          size: screenheight * .045,
-                        ),
+                        SizedBox(height: screenheight * 0.025),
                       ],
                     ),
                   ),
                 ),
+              ),
 
-                /// Categoriesss ````````````````````
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.060,
-                    MediaQuery.of(context).size.height * 0.020,
-                    MediaQuery.of(context).size.width * 0.000,
-                    MediaQuery.of(context).size.height * 0.000,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: screenheight * .050,
-                          width: screenwidth,
-                          //color: Color.fromARGB(131, 244, 225, 168),
-                          child: Text(
-                            "Category",
-                            style: TextStyle(
-                                color: Color(0xffb54c62),
-                                fontWeight: FontWeight.w500,
-                                fontSize: screenheight * 0.035
-                                //fontSize: 32
-                                ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                //                 CATTTEEGGOORRYYYY     \\
-
-                Container(
-                  padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.045,
-                    MediaQuery.of(context).size.height * 0.020,
-                    MediaQuery.of(context).size.width * 0.000,
-                    MediaQuery.of(context).size.height * 0.000,
-                  ),
-                  height: screenheight * .220,
-                  //height: 170,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      CategoryLists(context, cat1, 'm1'),
-                      CategoryLists(context, cat2, 'm2'),
-                      CategoryLists(context, cat3, 'm3'),
-                      CategoryLists(context, cat4, 'm4'),
-                      CategoryLists(context, cat5, 'm5'),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.060,
-                    MediaQuery.of(context).size.height * 0.020,
-                    MediaQuery.of(context).size.width * 0.000,
-                    MediaQuery.of(context).size.height * 0.000,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 40,
-                          width: screenwidth,
-                          //color: Color.fromARGB(131, 244, 225, 168),
-                          child: Text(
-                            "Trending",
-                            style: TextStyle(
-                              color: Color(0xffb54c62),
-                              fontWeight: FontWeight.w500,
-                              fontSize: screenheight * 0.035,
-                              //fontSize: 32
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                //// Carousel Slider//////////////
-                /// //// Carousel Slider//////////////
-                ///  //// Carousel Slider//////////////
-                ///  //// Carousel Slider//////////////
-                ///  //// Carousel Slider//////////////
-                ///  //// Carousel Slider//////////////
-                Container(
-                  margin: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.020,
-                    MediaQuery.of(context).size.height * 0.020,
-                    MediaQuery.of(context).size.width * 0.020,
-                    MediaQuery.of(context).size.height * 0.060,
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.270,
-                  width: MediaQuery.of(context).size.width * 0.870,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SearchPage()),
+                  );
+                },
+                child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color.fromARGB(255, 196, 196, 196),
-                      width: 01,
-                    ),
-                    borderRadius: BorderRadius.circular(31),
+                    color: const Color.fromARGB(177, 255, 204, 190),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: FutureBuilder<List<Map<String, dynamic>>>(
-                      future: futureImageList,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                          return Center(
-                              child: Text('Error: ${snapshot.error}'));
-                        } else if (snapshot.hasData) {
-                          List<Map<String, dynamic>> imageList = snapshot.data!;
-                          return AnimatedBuilder(
-                            animation: _currentIndexNotifier,
-                            builder: (content, child) {
-                              return CarouselSlider(
-                                items: imageList.map((item) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  TrendingScreen()));
-                                    },
-                                    child: Stack(
-                                      fit: StackFit.expand,
-                                      children: [
-                                        CachedNetworkImage(
-                                          imageUrl: item['image_path'] ?? '',
-                                          fit: BoxFit.cover,
-                                          width: double.infinity,
-                                          placeholder: (context, url) => Center(
-                                            child: CircularProgressIndicator(),
-                                          ),
-                                          errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
-                                        ),
-                                        // Image.network(
-                                        //   item['image_path'] ?? '',
-                                        //   fit: BoxFit.cover,
-                                        //   width: double.infinity,
-                                        //   filterQuality: FilterQuality.low,
-                                        // ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  begin: Alignment.topCenter,
-                                                  end: Alignment.bottomCenter,
-                                                  colors: [
-                                                Colors.transparent,
-                                                Color.fromARGB(
-                                                    26, 255, 255, 255),
-                                              ])),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          right: 0,
-                                          top: screenheight * 0.200,
-                                          child: Container(
-                                            width: screenwidth,
-                                            height: screenheight * 0.10,
-                                            padding: EdgeInsets.fromLTRB(
-                                              MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.000,
-                                              MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.015,
-                                              MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.000,
-                                              MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.000,
-                                            ),
-                                            color: Color(0xff67c2bf)
-                                                .withOpacity(0.350),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                FittedBox(
-                                                  fit: BoxFit.scaleDown,
-                                                  child: Text(
-                                                    item['name'] ?? 'No name',
-                                                    style: TextStyle(
-                                                        color: Color.fromARGB(
-                                                            255, 255, 255, 255),
-                                                        fontSize: screenheight *
-                                                            0.020,
-                                                        fontWeight:
-                                                            FontWeight.w700),
-                                                    maxLines: 2,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                }).toList(),
-                                carouselController: carouselController,
-                                options: CarouselOptions(
-                                  scrollPhysics: ClampingScrollPhysics(),
-                                  aspectRatio: 1,
-                                  viewportFraction: 1,
-                                  // onPageChanged: (index, reason) {
-                                  //   if (currentIndex != index) {}
-                                  //   setState(() {
-                                  //     currentIndex = index;
-                                  //   });
-                                  // },
-                                ),
-                              );
-                            },
-                          );
-                        } else {
-                          return Center(child: Text('No data available'));
-                        }
-                      },
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.070,
-                    MediaQuery.of(context).size.height * 0.000,
-                    MediaQuery.of(context).size.width * 0.000,
-                    MediaQuery.of(context).size.height * 0.030,
-                  ),
+                  height: screenheight * 0.057,
+                  width: screenwidth * 0.890,
+                  margin: EdgeInsets.symmetric(
+                      horizontal: screenwidth * 0.070,
+                      vertical: screenheight * 0.040),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: screenwidth * 0.560,
-                            //color: Color.fromARGB(82, 158, 158, 158),
-                            child: Text(
-                              "Top places",
-                              style: TextStyle(
-                                  color: Color(0xffb54c62),
-                                  // top place text
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: screenheight * 0.035),
-                            ),
-                          ),
-                        ],
+                    children: <Widget>[
+                      SizedBox(
+                        width: screenwidth * .05,
                       ),
-
-                      // buildTopPlaces(),
+                      Text(
+                        "Search for the best",
+                        style: TextStyle(
+                          fontSize: screenheight * 0.0210,
+                          color: const Color.fromARGB(255, 182, 119, 103),
+                        ),
+                      ),
+                      SizedBox(
+                        width: screenwidth * .290,
+                      ),
+                      Icon(
+                        Icons.search_rounded,
+                        color: const Color.fromARGB(255, 182, 119, 103),
+                        size: screenheight * .045,
+                      ),
                     ],
                   ),
                 ),
-                buildTopPlaces(),
-              ],
-            ),
+              ),
+
+              /// Categoriesss ````````````````````
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.060,
+                  MediaQuery.of(context).size.height * 0.020,
+                  MediaQuery.of(context).size.width * 0.000,
+                  MediaQuery.of(context).size.height * 0.000,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: screenheight * .050,
+                        width: screenwidth,
+                        //color: Color.fromARGB(131, 244, 225, 168),
+                        child: Text(
+                          "Category",
+                          style: TextStyle(
+                              color: const Color(0xffb54c62),
+                              fontWeight: FontWeight.w500,
+                              fontSize: screenheight * 0.035
+                              //fontSize: 32
+                              ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //                 CATTTEEGGOORRYYYY     \\
+
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.045,
+                  MediaQuery.of(context).size.height * 0.020,
+                  MediaQuery.of(context).size.width * 0.000,
+                  MediaQuery.of(context).size.height * 0.000,
+                ),
+                height: screenheight * .220,
+                //height: 170,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    categoryLists(context, cat1, 'm1'),
+                    categoryLists(context, cat2, 'm2'),
+                    categoryLists(context, cat3, 'm3'),
+                    categoryLists(context, cat4, 'm4'),
+                    categoryLists(context, cat5, 'm5'),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.060,
+                  MediaQuery.of(context).size.height * 0.020,
+                  MediaQuery.of(context).size.width * 0.000,
+                  MediaQuery.of(context).size.height * 0.000,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 40,
+                        width: screenwidth,
+                        //color: Color.fromARGB(131, 244, 225, 168),
+                        child: Text(
+                          "Trending",
+                          style: TextStyle(
+                            color: const Color(0xffb54c62),
+                            fontWeight: FontWeight.w500,
+                            fontSize: screenheight * 0.035,
+                            //fontSize: 32
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //// Carousel Slider//////////////
+              /// //// Carousel Slider//////////////
+              ///  //// Carousel Slider//////////////
+              ///  //// Carousel Slider//////////////
+              ///  //// Carousel Slider//////////////
+              ///  //// Carousel Slider//////////////
+              Container(
+                margin: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.020,
+                  MediaQuery.of(context).size.height * 0.020,
+                  MediaQuery.of(context).size.width * 0.020,
+                  MediaQuery.of(context).size.height * 0.060,
+                ),
+                height: MediaQuery.of(context).size.height * 0.270,
+                width: MediaQuery.of(context).size.width * 0.870,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 196, 196, 196),
+                    width: 01,
+                  ),
+                  borderRadius: BorderRadius.circular(31),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: FutureBuilder<List<Map<String, dynamic>>>(
+                    future: futureImageList,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else if (snapshot.hasData) {
+                        List<Map<String, dynamic>> imageList = snapshot.data!;
+                        return AnimatedBuilder(
+                          animation: _currentIndexNotifier,
+                          builder: (content, child) {
+                            return CarouselSlider(
+                              items: imageList.map((item) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const TrendingScreen()));
+                                  },
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      CachedNetworkImage(
+                                        imageUrl: item['image_path'] ?? '',
+                                        fit: BoxFit.cover,
+                                        width: double.infinity,
+                                        placeholder: (context, url) =>
+                                            const Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                      ),
+                                      // Image.network(
+                                      //   item['image_path'] ?? '',
+                                      //   fit: BoxFit.cover,
+                                      //   width: double.infinity,
+                                      //   filterQuality: FilterQuality.low,
+                                      // ),
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                            gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                              Colors.transparent,
+                                              Color.fromARGB(26, 255, 255, 255),
+                                            ])),
+                                      ),
+                                      Positioned(
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        top: screenheight * 0.200,
+                                        child: Container(
+                                          width: screenwidth,
+                                          height: screenheight * 0.10,
+                                          padding: EdgeInsets.fromLTRB(
+                                            MediaQuery.of(context).size.width *
+                                                0.000,
+                                            MediaQuery.of(context).size.height *
+                                                0.015,
+                                            MediaQuery.of(context).size.width *
+                                                0.000,
+                                            MediaQuery.of(context).size.height *
+                                                0.000,
+                                          ),
+                                          color: const Color(0xff67c2bf)
+                                              .withOpacity(0.350),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  item['name'] ?? 'No name',
+                                                  style: TextStyle(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
+                                                      fontSize:
+                                                          screenheight * 0.020,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                  maxLines: 2,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                              carouselController: carouselController,
+                              options: CarouselOptions(
+                                scrollPhysics: const ClampingScrollPhysics(),
+                                aspectRatio: 1,
+                                viewportFraction: 1,
+                                // onPageChanged: (index, reason) {
+                                //   if (currentIndex != index) {}
+                                //   setState(() {
+                                //     currentIndex = index;
+                                //   });
+                                // },
+                              ),
+                            );
+                          },
+                        );
+                      } else {
+                        return const Center(child: Text('No data available'));
+                      }
+                    },
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.070,
+                  MediaQuery.of(context).size.height * 0.000,
+                  MediaQuery.of(context).size.width * 0.000,
+                  MediaQuery.of(context).size.height * 0.030,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: screenwidth * 0.560,
+                          //color: Color.fromARGB(82, 158, 158, 158),
+                          child: Text(
+                            "Top places",
+                            style: TextStyle(
+                                color: const Color(0xffb54c62),
+                                // top place text
+                                fontWeight: FontWeight.w500,
+                                fontSize: screenheight * 0.035),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // buildTopPlaces(),
+                  ],
+                ),
+              ),
+              buildTopPlaces(),
+            ],
           ),
         ),
       ),
@@ -572,51 +555,50 @@ class _MyWidgetState extends State<HomeScreen> {
   }
 
   StreamBuilder<QuerySnapshot> buildTopPlaces() {
-  // List of specific document IDs you want to display
-  List<String> documentIds = ['143', '132', '133'];
+    // List of specific document IDs you want to display
+    List<String> documentIds = ['143', '132', '133'];
 
-  return StreamBuilder<QuerySnapshot>(
-    stream: FirebaseFirestore.instance
-        .collection('place')
-        .where(FieldPath.documentId, whereIn: documentIds)
-        .snapshots(),
-    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      if (snapshot.hasError) {
-        return Text('Something went wrong');
-      }
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return CircularProgressIndicator();
-      }
-      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-        return Text('No Data Available');
-      }
-      // Create a list of widgets for the top places
-      List<Widget> topPlacesWidgets = snapshot.data!.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>? ?? {};
-        String location = data['location'] as String? ?? 'Unknown location';
-        String documentId = doc.id;
-        return Container(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * .030),
-          child: TopPlaces(
-            data['image'] as String? ?? '',
-            data['name'] as String? ?? 'No name',
-            location,
-            data['type'] as String? ?? 'No type',
-            documentId,
-          ),
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('place')
+          .where(FieldPath.documentId, whereIn: documentIds)
+          .snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Text('Something went wrong');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return const Text('No Data Available');
+        }
+        // Create a list of widgets for the top places
+        List<Widget> topPlacesWidgets = snapshot.data!.docs.map((doc) {
+          Map<String, dynamic> data = doc.data() as Map<String, dynamic>? ?? {};
+          String location = data['location'] as String? ?? 'Unknown location';
+          String documentId = doc.id;
+          return Container(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * .030),
+            child: topPlaces(
+              data['image'] as String? ?? '',
+              data['name'] as String? ?? 'No name',
+              location,
+              data['type'] as String? ?? 'No type',
+              documentId,
+            ),
+          );
+        }).toList();
+        // Return a Column with the top places widgets
+        return Column(
+          children: topPlacesWidgets,
         );
-      }).toList();
-      // Return a Column with the top places widgets
-      return Column(
-        children: topPlacesWidgets,
-      );
-    },
-  );
-}
+      },
+    );
+  }
 
-  @override
-  Widget TopPlaces(String image, String tpname, String location, String type,
+  Widget topPlaces(String image, String tpname, String location, String type,
       String documentId) {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
@@ -649,7 +631,6 @@ class _MyWidgetState extends State<HomeScreen> {
           //   ),
           // ],
           borderRadius: BorderRadius.circular(10),
-         
         ),
 
         ////////////
@@ -659,7 +640,7 @@ class _MyWidgetState extends State<HomeScreen> {
                 height: screenheight * 0.150,
                 width: screenwidth * 0.250,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         topLeft: Radius.circular(10)),
                     image: DecorationImage(
@@ -670,7 +651,7 @@ class _MyWidgetState extends State<HomeScreen> {
               child: Container(
                 height: screenheight * 0.250,
                 width: screenwidth * 0.650,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                     topRight: Radius.circular(10),
@@ -690,18 +671,16 @@ class _MyWidgetState extends State<HomeScreen> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                            child: Expanded(
-                              child: Text(
-                                // NAME OF THEPLACE
-                                tpname,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: screenwidth * 0.045,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff142850)),
-                              ),
+                          Expanded(
+                            child: Text(
+                              // NAME OF THEPLACE
+                              tpname,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: screenwidth * 0.045,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xff142850)),
                             ),
                           ),
                         ],
@@ -719,7 +698,7 @@ class _MyWidgetState extends State<HomeScreen> {
                           Icon(
                             size: screenheight * 0.030,
                             Icons.location_on_outlined,
-                            color: Color(0xff67c2bf),
+                            color: const Color(0xff67c2bf),
                           ),
                           Expanded(
                             child: Text(
@@ -729,7 +708,8 @@ class _MyWidgetState extends State<HomeScreen> {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(195, 39, 73, 109)),
+                                  color:
+                                      const Color.fromARGB(195, 39, 73, 109)),
                             ),
                           ),
                         ],
@@ -763,7 +743,7 @@ class _MyWidgetState extends State<HomeScreen> {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0xff2364aa)),
+                                  color: const Color(0xff2364aa)),
                             ),
                           ),
                         ],
@@ -783,12 +763,12 @@ class _MyWidgetState extends State<HomeScreen> {
     streamController.addStream(FirebaseFirestore.instance
         .collection('place')
         .where('name', isGreaterThanOrEqualTo: searchTerm)
-        .where('name', isLessThan: searchTerm + '\uf8ff')
+        .where('name', isLessThan: '$searchTerm\uf8ff')
         .snapshots()
         .map((snapshot) => snapshot.docs));
   }
 
-  Widget CategoryLists(BuildContext context, String catname, String catimage) {
+  Widget categoryLists(BuildContext context, String catname, String catimage) {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context)
         .size
@@ -817,7 +797,7 @@ class _MyWidgetState extends State<HomeScreen> {
             Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Color.fromARGB(57, 95, 95, 95),
+                  color: const Color.fromARGB(57, 95, 95, 95),
                   width: 5.9,
                 ),
                 borderRadius: BorderRadius.circular(20),
@@ -837,8 +817,11 @@ class _MyWidgetState extends State<HomeScreen> {
             Container(
               margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.008),
+              height: screenheight *
+                  0.02, // Set a fixed height for the text container
+              width: screenwidth * 0.270,
               child: Text(
-                '$catname',
+                catname,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
@@ -846,11 +829,7 @@ class _MyWidgetState extends State<HomeScreen> {
                   fontSize: screenheight * .017,
                   fontWeight: FontWeight.w500,
                 ),
-              ),
-              height: screenheight *
-                  0.02, // Set a fixed height for the text container
-              width: screenwidth *
-                  0.270, // Match the width of the category container
+              ), // Match the width of the category container
             ),
           ],
         ),

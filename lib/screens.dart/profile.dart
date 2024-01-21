@@ -4,7 +4,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 
 class ProfileNb extends StatefulWidget {
-  ProfileNb({Key? key}) : super(key: key);
+  const ProfileNb({super.key});
 
   @override
   State<ProfileNb> createState() => _ProfileNbState();
@@ -20,12 +20,15 @@ class _ProfileNbState extends State<ProfileNb> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Explore Page'),
-        backgroundColor: Color(0xfff5f2e8),
+        title: const Text(
+          'Explore Page',
+          style: TextStyle(color: Color(0xfff5f2e8)),
+        ),
+        backgroundColor: const Color(0xff67c2bf),
       ),
-      backgroundColor: Color(0xfff5f2e8),
+      backgroundColor: const Color(0xfff5f2e8),
       body: FutureBuilder(
-          future: Future.delayed(Duration(milliseconds: 40)),
+          future: Future.delayed(const Duration(milliseconds: 40)),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
               return ListView.builder(
@@ -68,10 +71,10 @@ class _ProfileNbState extends State<ProfileNb> {
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color.fromARGB(255, 111, 111, 111)
+                                    color: const Color.fromARGB(255, 111, 111, 111)
                                         .withOpacity(0.1), // Shadow color
                                     offset:
-                                        Offset(2, 3), // Offset of the shadow
+                                        const Offset(2, 3), // Offset of the shadow
                                     blurRadius: 30, // Amount of blur
                                     spreadRadius: 0,
                                   ),
@@ -85,8 +88,8 @@ class _ProfileNbState extends State<ProfileNb> {
                                     height: screenheight * 0.130,
                                     width: screenwidth * 0.260,
                                     decoration: BoxDecoration(
-                                      color: Color.fromARGB(255, 193, 218, 236),
-                                      borderRadius: BorderRadius.only(
+                                      color: const Color.fromARGB(255, 193, 218, 236),
+                                      borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(20),
                                           topLeft: Radius.circular(20)),
                                       image: DecorationImage(
@@ -130,23 +133,21 @@ class _ProfileNbState extends State<ProfileNb> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: <Widget>[
-                                                    Container(
-                                                      child: Expanded(
-                                                          child: Text(
-                                                        documentSnapshot[
-                                                            'name'],
-                                                        maxLines: 1,
-                                                        style: TextStyle(
-                                                          fontSize:
-                                                              screenwidth *
-                                                                  0.040,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color:
-                                                              Color(0xff142850),
-                                                        ),
-                                                      )),
-                                                    )
+                                                    Expanded(
+                                                        child: Text(
+                                                      documentSnapshot[
+                                                          'name'],
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            screenwidth *
+                                                                0.040,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color:
+                                                            const Color(0xff142850),
+                                                      ),
+                                                    ))
                                                   ],
                                                 ),
                                               ),
@@ -172,7 +173,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                                           screenheight * 0.030,
                                                       Icons
                                                           .location_on_outlined,
-                                                      color: Color(0xff67c2bf),
+                                                      color: const Color(0xff67c2bf),
                                                     ),
                                                     Flexible(
                                                       child: Text(
@@ -197,7 +198,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                                                   0.029,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          color: Color.fromARGB(
+                                                          color: const Color.fromARGB(
                                                               195, 39, 73, 109),
                                                         ),
                                                       ),
@@ -230,7 +231,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                                                   0.015,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          color: Color.fromARGB(
+                                                          color: const Color.fromARGB(
                                                               145, 0, 0, 0)),
                                                     ),
                                                     Text(
@@ -242,7 +243,7 @@ class _ProfileNbState extends State<ProfileNb> {
                                                                   0.013,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          color: Color(
+                                                          color: const Color(
                                                               0xff2364aa)),
                                                     ),
                                                   ],
@@ -281,9 +282,9 @@ class _ProfileNbState extends State<ProfileNb> {
         MediaQuery.of(context).size.height * 0.000,
       ),
       child: Shimmer.fromColors(
-        baseColor: Color.fromARGB(255, 211, 211, 211),
-        highlightColor: Color.fromARGB(213, 245, 245, 245),
-        period: Duration(seconds: 2),
+        baseColor: const Color.fromARGB(255, 211, 211, 211),
+        highlightColor: const Color.fromARGB(213, 245, 245, 245),
+        period: const Duration(seconds: 2),
         child: Container(
           margin: EdgeInsets.symmetric(
             vertical: screenheight * 0.010,
@@ -293,7 +294,7 @@ class _ProfileNbState extends State<ProfileNb> {
           width: screenwidth * 0.870,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Color.fromARGB(203, 255, 255, 255),
+            color: const Color.fromARGB(203, 255, 255, 255),
           ),
         ),
       ),

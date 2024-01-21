@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pondyapp/account/signin_page.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 void handleSignUp(BuildContext context, String email, String password) async {
@@ -10,7 +10,7 @@ void handleSignUp(BuildContext context, String email, String password) async {
     User? user = userCredential.user;
     if (user != null) {
       user.getIdToken().then((idToken) {
-        print("ID Token: $idToken");
+        
         // Now you can send this idToken to your server and verify it there
       });
     }
@@ -22,9 +22,10 @@ void handleSignUp(BuildContext context, String email, String password) async {
         return Container();
       },
     );
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => SigninPage()),
+      MaterialPageRoute(builder: (context) => const SigninPage()),
     );
   } catch (e) {
     Builder(
@@ -45,6 +46,8 @@ Future<UserCredential> signUp(String email, String password) async {
 }
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
@@ -60,13 +63,13 @@ class _RegisterPageState extends State<RegisterPage> {
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xff608334),
+        backgroundColor: const Color(0xff608334),
         body: Builder(
           builder: (BuildContext scaffoldContext) {
             return MaterialApp(
               home: Scaffold(
                 resizeToAvoidBottomInset: false,
-                backgroundColor: Color(0xff608334),
+                backgroundColor: const Color(0xff608334),
                 body: SingleChildScrollView(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
@@ -84,13 +87,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 MediaQuery.of(context).size.width * 0.000,
                                 MediaQuery.of(context).size.height * 0.000,
                               ),
-                              color: Color(0xff608334),
+                              color: const Color(0xff608334),
                               height: screenheight * 0.55,
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                     style: TextStyle(
-                                        color: Color(0xfff7feef), // Text color
+                                        color: const Color(0xfff7feef), // Text color
                                         fontSize: screenheight * .070,
                                         // fontSize: 34,
                                         fontWeight: FontWeight.bold // Text size
@@ -103,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Flexible(
                           fit: FlexFit.loose,
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(70),
@@ -119,16 +122,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color.fromARGB(0, 98, 0, 98),
+                                      color: const Color.fromARGB(0, 98, 0, 98),
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(7)),
+                                          const BorderRadius.all(Radius.circular(7)),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Color.fromARGB(255, 3, 8, 152)
+                                          color: const Color.fromARGB(255, 3, 8, 152)
                                               .withOpacity(0.2),
                                           spreadRadius: 2,
                                           blurRadius: 17,
-                                          offset: Offset(0,
+                                          offset: const Offset(0,
                                               10), // changes position of shadow
                                         ),
                                       ],
@@ -136,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     child: Column(
                                       children: [
                                         Container(
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             color: Color.fromARGB(
                                                 255, 255, 255, 255),
                                             borderRadius: BorderRadius.only(
@@ -147,10 +150,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                             controller: emailController,
                                             decoration: InputDecoration(
                                               filled: true,
-                                              fillColor: Color(0xfff7feef),
+                                              fillColor: const Color(0xfff7feef),
                                               labelText: 'Enter your Email',
                                               labelStyle: TextStyle(
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       204, 96, 131, 52),
                                                   fontSize: screenheight * .037,
                                                   fontWeight: FontWeight.w500),
@@ -160,7 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                         ),
                                         SizedBox(height: screenheight * .003),
                                         Container(
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             color: Color.fromARGB(
                                                 255, 255, 255, 255),
                                             borderRadius: BorderRadius.only(
@@ -172,10 +175,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                             controller: passwordController,
                                             decoration: InputDecoration(
                                               filled: true,
-                                              fillColor: Color(0xfff7feef),
+                                              fillColor: const Color(0xfff7feef),
                                               labelText: 'Password',
                                               labelStyle: TextStyle(
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       204, 96, 131, 52),
                                                   fontSize: screenheight * .037,
                                                   fontWeight: FontWeight.w500),
@@ -203,13 +206,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                             passwordController.text);
                                       },
                                       child: Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                             color: Color(0xff97b770),
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(70))),
                                         height: screenheight * 0.140,
                                         width: screenwidth * 0.550,
-                                        child: Center(
+                                        child: const Center(
                                           child: Text(
                                             "Sign up",
                                             style: TextStyle(
@@ -234,7 +237,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       "Or Continue with Google",
                                       style: TextStyle(
                                         color:
-                                            Color.fromARGB(191, 137, 137, 137),
+                                            const Color.fromARGB(191, 137, 137, 137),
                                         fontSize: screenheight * .035,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -244,11 +247,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         height: screenheight * 0.130,
                                         width: screenwidth * 0.120,
                                       ),
-                                      Container(
+                                      SizedBox(
                                         height: screenheight * 0.130,
                                         width: screenwidth * 0.120,
                                       ),

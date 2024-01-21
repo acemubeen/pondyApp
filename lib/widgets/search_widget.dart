@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -43,12 +42,12 @@ class _SearchWidgetState extends State<SearchWidget> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SearchPage(),
+              builder: (context) => const SearchPage(),
             ));
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 202, 232, 255),
+          color: const Color.fromARGB(255, 202, 232, 255),
           borderRadius: BorderRadius.circular(20.0),
         ),
         height: screenheight * 0.057,
@@ -60,7 +59,7 @@ class _SearchWidgetState extends State<SearchWidget> {
             "Search for the best",
             style: TextStyle(
               fontSize: screenheight * 0.0210,
-              color: Color.fromARGB(255, 58, 137, 183),
+              color: const Color.fromARGB(255, 58, 137, 183),
             ),
           ),
         ),

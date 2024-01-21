@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SavedItemsProvider extends ChangeNotifier {
-  List<String> _saveditems = [];
+  final List<String> _saveditems = [];
 
   List<String> get savedItems => _saveditems;
 
@@ -15,6 +14,7 @@ class SavedItemsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ignore: non_constant_identifier_names
   bool IsItemSaved(String documentId) {
     return _saveditems.contains(documentId);
   }

@@ -11,12 +11,10 @@ class TrendingScreen extends StatefulWidget {
 }
 
 class _TrendingScreenState extends State<TrendingScreen> {
-  late final Stream<List<DocumentSnapshot>> _trendingStream;
 
     @override
   void initState() {
     super.initState();
-    _trendingStream = getTrendingStream();
   }
   Stream<List<DocumentSnapshot>> getTrendingStream() {
 
@@ -31,19 +29,18 @@ class _TrendingScreenState extends State<TrendingScreen> {
 
   @override
   Widget build(BuildContext context) {
-        double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return StreamBuilder<List<DocumentSnapshot>>(
       stream: getTrendingStream(),
       builder: (BuildContext context, AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Text('No Data Available');
+          return const Text('No Data Available');
         }
         // Create a list of widgets for the trending places
        // Inside the StreamBuilder's builder function
@@ -54,7 +51,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
   String location = data['location'] as String? ?? 'Unknown location';
   String type = data['type'] as String? ?? 'No type';
   String documentId = documentSnapshot.id;
-  return TrendingPlaces(
+  return trendingPlaces(
     context, // Pass the context here
     image,
     tpname,
@@ -74,8 +71,8 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
             Navigator.pop(context);
           },
         ),
-            backgroundColor: Color(0xff67c2bf),
-            title: Text('Trending & Top Places',
+            backgroundColor: const Color(0xff67c2bf),
+            title: const Text('Trending & Top Places',
             style: TextStyle(
               color: Color(0xfff5f2e8),
             ),
@@ -98,18 +95,11 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
     );
   }
 
-  @override
-  Widget TrendingPlaces(BuildContext context, image, String tpname, String location, String type,
+  Widget trendingPlaces(BuildContext context, image, String tpname, String location, String type,
       String documentId) {
         double screenwidth = MediaQuery.of(context).size.width;
          double screenheight = MediaQuery.of(context).size.height;
   
-  TextStyle commonTextStyle = TextStyle(
-   
-    fontSize: screenwidth * 0.035,
-    fontWeight: FontWeight.w500,
-    color: Color.fromARGB(199, 4, 98, 115),
-  );
 
     return GestureDetector(
       onTap: () {
@@ -131,10 +121,10 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
         decoration: BoxDecoration(
             boxShadow: [
                                   BoxShadow(
-                                    color: Color.fromARGB(255, 111, 111, 111)
+                                    color: const Color.fromARGB(255, 111, 111, 111)
                                         .withOpacity(0.1), // Shadow color
                                     offset:
-                                        Offset(2, 3), // Offset of the shadow
+                                        const Offset(2, 3), // Offset of the shadow
                                     blurRadius: 30, // Amount of blur
                                     spreadRadius: 0,
                                   ),
@@ -151,7 +141,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                 width: screenwidth * 0.250,
                 decoration: BoxDecoration(
                    
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         topLeft: Radius.circular(10)),
                     image: DecorationImage(
@@ -162,7 +152,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
               child: Container(
                 height: screenheight * 0.250,
                 width: screenwidth * 0.650,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                 
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
@@ -183,18 +173,16 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                            child: Expanded(
-                              child: Text(
-                                // NAME OF THEPLACE
-                                tpname,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: screenwidth * 0.045,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff142850)),
-                              ),
+                          Expanded(
+                            child: Text(
+                              // NAME OF THEPLACE
+                              tpname,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: screenwidth * 0.045,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xff142850)),
                             ),
                           ),
                         ],
@@ -212,7 +200,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                           Icon(
                             size: screenheight * 0.030,
                             Icons.location_on_outlined,
-                            color: Color(0xff67c2bf),
+                            color: const Color(0xff67c2bf),
                           ),
                           Expanded(
                             child: Text(
@@ -222,7 +210,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color.fromARGB(195,39,73,109)),
+                                  color: const Color.fromARGB(195,39,73,109)),
                             ),
                           ),
                         ],
@@ -256,7 +244,7 @@ List<Widget> trendingPlacesWidgets = snapshot.data!.map((documentSnapshot) {
                               style: TextStyle(
                                   fontSize: screenwidth * 0.035,
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0xff2364aa)),
+                                  color: const Color(0xff2364aa)),
                             ),
                           ),
                         ],

@@ -14,14 +14,14 @@ void openGoogleMap(String placeName) async {
 }
 
 class GoogleMaps extends StatelessWidget {
-  const GoogleMaps({Key? key}) : super(key: key);
+  const GoogleMaps({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 191, 191, 191),
+      backgroundColor: const Color.fromARGB(255, 191, 191, 191),
       appBar: AppBar(
-        title: Text("Open Google Maps"),
+        title: const Text("Open Google Maps"),
         backgroundColor: Colors.green[100],
       ),
       body: Center(
@@ -31,7 +31,7 @@ class GoogleMaps extends StatelessWidget {
               onPressed: () {
                 openGoogleMap("Ameer Oil Trade"); // San Francisco
               },
-              child: Text('Locate Ameer Oil Trade'),
+              child: const Text('Locate Ameer Oil Trade'),
             ),
           ],
         ),

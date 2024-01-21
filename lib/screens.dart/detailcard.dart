@@ -21,17 +21,10 @@ class DetailCard extends StatelessWidget {
   }
 
   final String documentId;
-  DetailCard({required this.documentId, Key? key}) : super(key: key);
-  final CollectionReference _place =
-      FirebaseFirestore.instance.collection('place');
+  const DetailCard({required this.documentId, super.key});
 
-  bool _isTapped = false;
   @override
   Widget build(BuildContext context) {
-    bool _isTapped = false;
-
-    double screenwidth = MediaQuery.of(context).size.width;
-    double screenheight = MediaQuery.of(context).size.height;
     return PlaceCard(documentId: documentId);
   }
 }
@@ -53,7 +46,7 @@ ppppppppppppppllllllllllllllllaaaaaaaaaaacccccccccccccceeeeeeeeeeeeeeeee
 
  */
 class PlaceCard extends StatefulWidget {
-  PlaceCard({required this.documentId, Key? key}) : super(key: key);
+  const PlaceCard({required this.documentId, super.key});
   final String documentId;
 
   @override
@@ -68,14 +61,15 @@ class _PlaceCardState extends State<PlaceCard> {
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
-    bool _isTapped = false;
+    bool isTapped = false;
     return MaterialApp(
         home: Scaffold(
-      backgroundColor: Color(0xfff5f2e8),
+      backgroundColor: const Color(0xfff5f2e8),
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_rounded,
-          color: Colors.grey[700],
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.grey[200],
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -86,7 +80,7 @@ class _PlaceCardState extends State<PlaceCard> {
           style: TextStyle(fontSize: screenheight * .028, color: Colors.white),
         ),
         elevation: 10,
-        backgroundColor: Color(0xff67c2bf),
+        backgroundColor: const Color(0xff67c2bf),
       ),
       body: StreamBuilder(
         stream: _place.doc(widget.documentId).snapshots(),
@@ -127,29 +121,6 @@ class _PlaceCardState extends State<PlaceCard> {
                                     height: screenheight * .102,
                                     width: screenwidth * .60,
 
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: AutoSizeText(
-                                        documentSnapshot['name'],
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255),
-                                          fontSize: screenheight * .027,
-                                          fontWeight: FontWeight.w500,
-                                          shadows: [
-                                            Shadow(
-                                              // Bottom-left shadow
-                                              color:
-                                                  Colors.black.withOpacity(1.0),
-                                              offset: Offset(0.0, 0.0),
-                                              blurRadius: 40,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-
                                     ///
                                     ///
                                     ///
@@ -158,6 +129,29 @@ class _PlaceCardState extends State<PlaceCard> {
                                     ///
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
+                                    ),
+
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: AutoSizeText(
+                                        documentSnapshot['name'],
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          fontSize: screenheight * .027,
+                                          fontWeight: FontWeight.w500,
+                                          shadows: [
+                                            Shadow(
+                                              // Bottom-left shadow
+                                              color:
+                                                  Colors.black.withOpacity(1.0),
+                                              offset: const Offset(0.0, 0.0),
+                                              blurRadius: 40,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                     // Add more widgets or adjust the size as needed
                                   ),
@@ -172,14 +166,14 @@ class _PlaceCardState extends State<PlaceCard> {
                                         //First Container 1/3-> icon cntnr
                                         height: screenheight * .102,
                                         width: screenwidth * .40,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         // Add more widgets or adjust the size as needed
                                       ),
                                       Container(
                                         // 2nd container above liked cntnr
                                         height: screenheight * .120,
                                         width: screenwidth * .40,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         // Add more widgets or adjust the size as needed
                                       ),
                                       Container(
@@ -203,15 +197,17 @@ class _PlaceCardState extends State<PlaceCard> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               height: screenheight * .12,
                                               width: screenwidth * .12,
                                               child: CircleAvatar(
-                                                backgroundColor: Color.fromARGB(
-                                                    208, 79, 79, 79),
+                                                backgroundColor:
+                                                    const Color.fromARGB(
+                                                        208, 79, 79, 79),
                                                 child: Container(
-                                                  padding: EdgeInsets.only(
-                                                      left: 3.5, top: 0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 3.5, top: 0),
                                                   child: LikeButton(
                                                     isLiked: Provider.of<
                                                                 SavedItemsProvider>(
@@ -231,20 +227,33 @@ class _PlaceCardState extends State<PlaceCard> {
                                                     size: screenheight * .035,
                                                     circleSize:
                                                         screenheight * .020,
-                                                    bubblesColor: BubblesColor(
-                                                        dotPrimaryColor:
-                                                            const Color
-                                                                .fromARGB(255,
-                                                                75, 255, 81),
-                                                        dotSecondaryColor:
-                                                            const Color
-                                                                .fromARGB(255,
-                                                                255, 165, 31)),
-                                                    circleColor: CircleColor(
-                                                        start: Color.fromARGB(
-                                                            255, 217, 198, 26),
-                                                        end: Color.fromARGB(
-                                                            255, 64, 235, 127)),
+                                                    bubblesColor:
+                                                        const BubblesColor(
+                                                            dotPrimaryColor:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    75,
+                                                                    255,
+                                                                    81),
+                                                            dotSecondaryColor:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    165,
+                                                                    31)),
+                                                    circleColor:
+                                                        const CircleColor(
+                                                            start:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    217,
+                                                                    198,
+                                                                    26),
+                                                            end: Color.fromARGB(
+                                                                255,
+                                                                64,
+                                                                235,
+                                                                127)),
                                                   ),
                                                 ),
                                               ),
@@ -262,7 +271,7 @@ class _PlaceCardState extends State<PlaceCard> {
                       ),
                       Row(
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                             //Cntnr tht hlds type & link icons
 
                             height: screenheight * .080,
@@ -272,7 +281,7 @@ class _PlaceCardState extends State<PlaceCard> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Container(),
-                                Container(
+                                SizedBox(
                                   // type cntnr
                                   height: screenheight * .0710,
                                   width: screenwidth * .450,
@@ -284,7 +293,7 @@ class _PlaceCardState extends State<PlaceCard> {
                                     children: [
                                       Icon(
                                         Icons.type_specimen_outlined,
-                                        color: Color(0xff67c2bf),
+                                        color: const Color(0xff67c2bf),
                                         size: screenheight * .035,
                                       ),
                                       SizedBox(
@@ -293,8 +302,8 @@ class _PlaceCardState extends State<PlaceCard> {
                                       Text(
                                         documentSnapshot['type'],
                                         style: TextStyle(
-                                          color:
-                                              Color.fromARGB(195, 39, 73, 109),
+                                          color: const Color.fromARGB(
+                                              195, 39, 73, 109),
                                           fontSize: screenheight * .020,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -302,7 +311,7 @@ class _PlaceCardState extends State<PlaceCard> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   // cntins link icon container
                                   height: screenheight * .10,
                                   width: screenwidth * .400,
@@ -310,40 +319,44 @@ class _PlaceCardState extends State<PlaceCard> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                     Container(
-  // Link Icon Container
-  height: screenheight * .12,
-  width: screenwidth * .12,
-  child: CircleAvatar(
-    backgroundColor: Colors.grey[300],
-    child: InkWell(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Sorry 😉'),
-              content: Text("The Developer wasn't programmed to copy this link"),
-              actions: <Widget>[
-                TextButton(
-                  child: Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        );
-      },
-      child: Icon(
-        Icons.link,
-        color: Colors.black45,
-        size: screenheight * .040,
-      ),
-    ),
-  ),
-),
+                                      SizedBox(
+                                        // Link Icon Container
+                                        height: screenheight * .12,
+                                        width: screenwidth * .12,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.grey[300],
+                                          child: InkWell(
+                                            onTap: () {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title:
+                                                        const Text('Sorry 😉'),
+                                                    content: const Text(
+                                                        "The Developer wasn't programmed to copy this link"),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        child: const Text('OK'),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Icon(
+                                              Icons.link,
+                                              color: Colors.black45,
+                                              size: screenheight * .040,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                       SizedBox(
                                         width: screenwidth * .040,
                                       )
@@ -365,7 +378,7 @@ class _PlaceCardState extends State<PlaceCard> {
                             Text(
                               'LOCATION',
                               style: TextStyle(
-                                color: Color(0xff142850),
+                                color: const Color(0xff142850),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -383,7 +396,7 @@ class _PlaceCardState extends State<PlaceCard> {
                           child: Text(
                             documentSnapshot['location'],
                             style: TextStyle(
-                                color: Color.fromARGB(195, 39, 73, 109),
+                                color: const Color.fromARGB(195, 39, 73, 109),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -400,7 +413,7 @@ class _PlaceCardState extends State<PlaceCard> {
                             Text(
                               'DESCRIPTION',
                               style: TextStyle(
-                                color: Color(0xff142850),
+                                color: const Color(0xff142850),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -418,7 +431,7 @@ class _PlaceCardState extends State<PlaceCard> {
                           child: Text(
                             documentSnapshot['description'],
                             style: TextStyle(
-                                color: Color.fromARGB(195, 39, 73, 109),
+                                color: const Color.fromARGB(195, 39, 73, 109),
                                 fontSize: screenheight * .020,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -437,28 +450,28 @@ class _PlaceCardState extends State<PlaceCard> {
                               splashColor: Colors.transparent,
                               onTap: () {
                                 setState(() {
-                                  _isTapped = true;
+                                  isTapped = true;
                                 });
                                 Future.delayed(
                                     const Duration(milliseconds: 100), () {
                                   setState(() {
-                                    _isTapped = false;
+                                    isTapped = false;
                                   });
                                 });
                                 openGoogleMap(documentSnapshot['locate']);
                               },
                               borderRadius:
-                                  BorderRadius.all(const Radius.circular(30)),
+                                  const BorderRadius.all(Radius.circular(30)),
                               child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 500),
                                 curve: Curves.fastLinearToSlowEaseIn,
-                                height: _isTapped ? screenheight * 066 : 44.9,
-                                width: _isTapped ? screenwidth * .580 : 299.9,
+                                height: isTapped ? screenheight * 066 : 44.9,
+                                width: isTapped ? screenwidth * .580 : 299.9,
                                 decoration: BoxDecoration(
                                   color:
                                       const Color.fromARGB(255, 83, 148, 179),
-                                  borderRadius: BorderRadius.all(
-                                      const Radius.circular(30)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(30)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.black.withOpacity(0.3),
@@ -490,7 +503,7 @@ class _PlaceCardState extends State<PlaceCard> {
               ),
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
